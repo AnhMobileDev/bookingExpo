@@ -1,0 +1,95 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@ant-design/pro-layout": "^7.10.3",
+    "@apollo/client": "^3.7.5",
+    "@react-google-maps/api": "^2.18.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.14.194",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "antd": "^5.2.2",
+    "axios": "^1.3.5",
+    "dayjs": "^1.11.9",
+    "graphql": "^16.6.0",
+    "i18next": "^22.4.9",
+    "lodash": "^4.17.21",
+    "nprogress": "^0.2.0",
+    "react": "^18.2.0",
+    "react-auth-code-input": "^3.2.1",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.4",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.8.0",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.1",
+    "swiper": "^10.2.0",
+    "typescript": "^4.4.2",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "schema:codegen": "gqlg --schemaFilePath ./schema/schema.graphql --destDirPath ./__generated__ --depthLimit 3 && prettier --write --loglevel silent __generated__/**/*.gql",
+    "codegen": "graphql-codegen --config graphql-codegen/codegen.ts && yarn schema:codegen",
+    "typegen": "graphql-codegen --config graphql-codegen/typegen.yml && eslint src/graphql --fix",
+    "fix": "yarn lint --fix",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "proxy": "https://api-callme.gtsvn.com.vn",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.0.0",
+    "@graphql-codegen/cli": "^2.16.4",
+    "@graphql-codegen/client-preset": "^1.2.6",
+    "@graphql-codegen/fragment-matcher": "^3.3.3",
+    "@graphql-codegen/introspection": "^2.2.3",
+    "@graphql-codegen/near-operation-file-preset": "^2.5.0",
+    "@graphql-codegen/schema-ast": "^2.6.1",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "@types/nprogress": "^0.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "autoprefixer": "^10.4.13",
+    "craco-less": "^2.0.0",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "gql-generator": "^1.0.19",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.3",
+    "tailwindcss": "^3.2.4",
+    "ts-node": "^10.9.1"
+  }
+}

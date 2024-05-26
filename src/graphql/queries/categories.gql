@@ -1,0 +1,38 @@
+query categories(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $search: String
+  $sort: SortInput
+  $type: CategoryTypeEnum!
+) {
+  categories(
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    search: $search
+    sort: $sort
+    type: $type
+  ) {
+    items {
+      createdAt
+      deletedAt
+      id
+      isActive
+      name
+      type
+      updatedAt
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

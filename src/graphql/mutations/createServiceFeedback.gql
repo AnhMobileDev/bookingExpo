@@ -1,0 +1,5 @@
+mutation createServiceFeedback($input: CreateServiceFeedbackInput!) {
+  createServiceFeedback(input: $input) {
+    id
+  }
+}

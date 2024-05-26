@@ -1,0 +1,6 @@
+query countOrderItemForEachStatus {
+  countOrderItemForEachStatus {
+    status
+    totalItem
+  }
+}

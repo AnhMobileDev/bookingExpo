@@ -1,0 +1,3 @@
+query checkVehicleRegistrationPlateExist($id: String, $vehicleRegistrationPlate: String!) {
+  checkVehicleRegistrationPlateExist(id: $id, vehicleRegistrationPlate: $vehicleRegistrationPlate)
+}

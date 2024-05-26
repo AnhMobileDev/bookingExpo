@@ -1,0 +1,3 @@
+mutation userCreateOrderReview($input: CreateOrderReviewInput!) {
+  userCreateOrderReview(input: $input)
+}

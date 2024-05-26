@@ -1,0 +1,105 @@
+query vehicles(
+  $excludeActiveBooking: Boolean
+  $excludeActiveMaintenance: Boolean
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $search: String
+  $sort: SortInput
+) {
+  vehicles(
+    excludeActiveBooking: $excludeActiveBooking
+    excludeActiveMaintenance: $excludeActiveMaintenance
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    search: $search
+    sort: $sort
+  ) {
+    items {
+      addressMoreInfo
+      avatar {
+        createdAt
+        fileSize
+        fullOriginalUrl
+        fullThumbUrl
+        id
+        isDeleted
+        mimeType
+        name
+        originalUrl
+        ownerId
+        thumbUrl
+        type
+        updatedAt
+        videoUrl
+      }
+      avatarId
+      createdAt
+      deletedAt
+      detail
+      hidden
+      id
+      latitude
+      longitude
+      manufacturer {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      mapAddress
+      model {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      name
+      operatingNumber
+      operatingUnit
+      ordinalNumber
+      origin {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      serialNumber
+      updatedAt
+      userId
+      vehicleRegistrationPlate
+      vehicleType {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      vinNumber
+      yearOfManufacture
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

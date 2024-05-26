@@ -1,0 +1,3 @@
+query checkVinExist($id: String, $serialNumber: String!) {
+  checkVinExist(id: $id, serialNumber: $serialNumber)
+}

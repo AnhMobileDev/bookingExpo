@@ -1,0 +1,3 @@
+mutation seenNotification($id: String!) {
+  seenNotification(id: $id)
+}

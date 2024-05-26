@@ -1,0 +1,166 @@
+query userFavoriteProducts(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $search: String
+  $sort: SortInput
+) {
+  userFavoriteProducts(
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    search: $search
+    sort: $sort
+  ) {
+    items {
+      avatar {
+        createdAt
+        fileSize
+        fullOriginalUrl
+        fullThumbUrl
+        id
+        isDeleted
+        mimeType
+        name
+        originalUrl
+        ownerId
+        thumbUrl
+        type
+        updatedAt
+        videoUrl
+      }
+      avatarId
+      createdAt
+      deletedAt
+      descriptionImageIds
+      descriptionImages {
+        createdAt
+        fileSize
+        fullOriginalUrl
+        fullThumbUrl
+        id
+        isDeleted
+        mimeType
+        name
+        originalUrl
+        ownerId
+        thumbUrl
+        type
+        updatedAt
+        videoUrl
+      }
+      detail
+      id
+      isActive
+      isFixedCost
+      isNew
+      manufacturer {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      model {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      name
+      operatingNumber
+      operatingUnit
+      ordinalNumber
+      origin {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      partNumber
+      partOfProduct {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      partner {
+        addressMoreInfo
+        avatarId
+        bank
+        birthday
+        cardNumber
+        citizenId
+        countProduct
+        countTechnician
+        createdAt
+        deletedAt
+        description
+        email
+        fullname
+        hotline
+        id
+        isActive
+        isApproved
+        latitude
+        longitude
+        mapAddress
+        parentId
+        phone
+        star
+        suggestionPoint
+        type
+        updatedAt
+      }
+      partnerId
+      productType {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      productUnit {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      quantity
+      serialNumber
+      type
+      unitPrice
+      updatedAt
+      vehicleRegistrationPlate
+      vinNumber
+      yearOfManufacture
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

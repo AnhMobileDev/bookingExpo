@@ -1,0 +1,8 @@
+query maintenanceAccessories($routineLevel: Float!) {
+  maintenanceAccessories(routineLevel: $routineLevel) {
+    id
+    name
+    quantity
+    unit
+  }
+}

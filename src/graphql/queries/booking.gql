@@ -1,0 +1,143 @@
+query booking($id: String!) {
+  booking(id: $id) {
+    addressMoreInfo
+    code
+    createdAt
+    deletedAt
+    description
+    id
+    latitude
+    longitude
+    mapAddress
+    medias {
+      createdAt
+      fileSize
+      fullOriginalUrl
+      fullThumbUrl
+      id
+      isDeleted
+      mimeType
+      name
+      originalUrl
+      ownerId
+      thumbUrl
+      type
+      updatedAt
+      videoUrl
+    }
+
+    partnerId
+    problemTexts
+    problems {
+      id
+      isActive
+      name
+      type
+    }
+
+    status
+    technician {
+        fullname
+        qualifications {
+          name
+        }
+        reviewSummary {
+          starAverage
+          total
+          percent
+        }
+        hotline
+        id
+        avatar {
+          fullThumbUrl
+        }
+      }
+    partner {
+        fullname
+        qualifications {
+          name
+        }
+        reviewSummary {
+          starAverage
+          total
+          percent
+        }
+        hotline
+        id
+        avatar {
+          fullThumbUrl
+        }
+      }
+    statusDetail {
+      bookingId
+      createdAt
+      id
+      note
+      partnerId
+      reasons {
+        id
+        isActive
+        name
+        type
+      }
+    }
+    technicianCanReviewUser
+    technicianId
+    transportDistance
+    transportDuration
+    transportFee
+    updatedAt
+    userCanReviewAgency
+    userCanReviewTechnician
+    userId
+    vehicle {
+      addressMoreInfo
+      avatar {
+        fullOriginalUrl
+        fullThumbUrl
+        id
+      }
+      avatarId
+      createdAt
+      deletedAt
+      detail
+      hidden
+      id
+      latitude
+      longitude
+      manufacturer {
+        id
+        isActive
+        name
+        type
+      }
+      mapAddress
+      model {
+        id
+        isActive
+        name
+        type
+      }
+      name
+      operatingNumber
+      operatingUnit
+      ordinalNumber
+      origin {
+        id
+        isActive
+        name
+        type
+      }
+      serialNumber
+      updatedAt
+      userId
+      vehicleRegistrationPlate
+      vinNumber
+      yearOfManufacture
+    }
+    vehicleId
+    settlementAccepted {
+      id
+    }
+  }
+}

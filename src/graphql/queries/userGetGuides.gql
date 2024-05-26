@@ -1,0 +1,46 @@
+query userGetGuides(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $search: String
+  $sort: SortInput
+) {
+  userGetGuides(
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    search: $search
+    sort: $sort
+  ) {
+    items {
+      createdAt
+      deletedAt
+      description
+      id
+      instructions {
+        createdAt
+        deletedAt
+        description
+        guideId
+        id
+        isActive
+        name
+        updatedAt
+      }
+      isActive
+      name
+      updatedAt
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

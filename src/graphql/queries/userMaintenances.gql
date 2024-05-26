@@ -1,0 +1,59 @@
+query userMaintenances(
+  $endDate: String
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $search: String
+  $sort: SortInput
+  $startDate: String
+  $statuses: [MaintenanceStatusEnum!]
+) {
+  userMaintenances(
+    endDate: $endDate
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    search: $search
+    sort: $sort
+    startDate: $startDate
+    statuses: $statuses
+  ) {
+    items {
+      code
+      id
+      maintenanceLevel
+      routineLevel
+      status
+      user {
+        avatar {
+          fullThumbUrl
+          id
+          thumbUrl
+        }
+        fullname
+      }
+      userId
+      vehicle {
+        name
+        avatar {
+          fullThumbUrl
+          id
+          thumbUrl
+        }
+        mapAddress
+      }
+      vehicleId
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

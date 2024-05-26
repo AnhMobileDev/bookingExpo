@@ -1,0 +1,70 @@
+query userProductQuotations(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isAdmin: Boolean
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $partnerId: String
+  $productId: String
+  $productQuotationCode: String
+  $productQuotationId: String
+  $search: String
+  $sort: SortInput
+  $status: ProductQuotationStatusEnum
+  $userId: String
+) {
+  userProductQuotations(
+    filters: $filters
+    isActive: $isActive
+    isAdmin: $isAdmin
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    partnerId: $partnerId
+    productId: $productId
+    productQuotationCode: $productQuotationCode
+    productQuotationId: $productQuotationId
+    search: $search
+    sort: $sort
+    status: $status
+    userId: $userId
+  ) {
+    items {
+      code
+      createdAt
+      deletedAt
+      detail
+      id
+      medias {
+        fullOriginalUrl
+        fullThumbUrl
+        id
+      }
+      partner {
+        fullname
+      }
+      product {
+        avatar {
+          fullOriginalUrl
+          fullThumbUrl
+          id
+        }
+        id
+        name
+      }
+      productId
+      quantity
+      response
+      status
+      updatedAt
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

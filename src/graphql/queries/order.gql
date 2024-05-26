@@ -1,0 +1,75 @@
+query order($id: String!) {
+  order(id: $id) {
+    address {
+      id
+      mapAddress
+      addressName
+      contactPhone
+    }
+    code
+    createdAt
+    deletedAt
+    discount
+    id
+    note
+    partner {
+      id
+      fullname
+      phone
+      avatar {
+       fullOriginalUrl
+        fullThumbUrl
+        id
+      }
+      storeReviewSummary {
+        starAverage
+        total
+        percent
+      }
+    }
+    partnerId
+    product {
+      avatar {
+       fullOriginalUrl
+        fullThumbUrl
+        id
+      }
+      productId
+      id
+      name
+      quantity
+      total
+      type
+      unitPrice
+    }
+    shippingFee
+    status
+    statusDetail {
+      createdAt
+      id
+      note
+      orderId
+      partnerId
+      reasons {
+        id
+        name
+        orderStatusId
+        type
+      }
+      status
+      userId
+    }
+    total
+    updatedAt
+    user {
+      id
+      fullname
+      phone
+      userAddress {
+        mapAddress
+      }
+    }
+    userCanReview
+    userId
+  }
+}

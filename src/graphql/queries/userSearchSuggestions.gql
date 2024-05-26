@@ -1,0 +1,3 @@
+query userSearchSuggestions($search: String) {
+  userSearchSuggestions(search: $search)
+}

@@ -1,0 +1,80 @@
+query myBookings(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $search: String
+  $sort: SortInput
+  $statuses: [BookingStatusEnum!]
+) {
+  myBookings(
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    search: $search
+    sort: $sort
+    statuses: $statuses
+  ) {
+    items {
+      addressMoreInfo
+      code
+      createdAt
+      deletedAt
+      description
+      id
+      latitude
+      longitude
+      mapAddress
+      partner {
+        fullname
+        hotline
+        id
+        avatar {
+          fullThumbUrl
+        }
+      }
+      partnerId
+      problemTexts
+      problems {
+        id
+        name
+      }
+      status
+      technician {
+        fullname
+        hotline
+        id
+        avatar {
+          fullThumbUrl
+        }
+      }
+      transportDistance
+      transportDuration
+      transportFee
+      updatedAt
+      userId
+      vehicle {
+        avatarId
+        avatar {
+          fullThumbUrl
+        }
+        name
+        id
+      }
+      settlementAccepted {
+        id
+        total
+      }
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

@@ -1,0 +1,59 @@
+query getServiceFeedbacks(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $search: String
+  $sort: SortInput
+  $status: ServiceFeedbacksStatusEnum
+  $type: ServiceFeedbackTypeEnum
+) {
+  getServiceFeedbacks(
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    search: $search
+    sort: $sort
+    status: $status
+    type: $type
+  ) {
+    items {
+      answer
+      content
+      createAt
+      id
+      images {
+        fullOriginalUrl
+        fullThumbUrl
+        id
+        name
+        originalUrl
+      }
+      imagesAnswer {
+        fullOriginalUrl
+        fullThumbUrl
+        id
+        name
+        originalUrl
+        videoUrl
+      }
+      imagesAnswerIds
+      imagesIds
+      partnerId
+      status
+      type
+      updateAt
+      userId
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

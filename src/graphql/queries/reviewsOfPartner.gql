@@ -1,0 +1,51 @@
+query reviewsOfPartner(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $partnerId: String!
+  $search: String
+  $sort: SortInput
+  $star: Float
+  $type: ReviewTypeEnum!
+) {
+  reviewsOfPartner(
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    partnerId: $partnerId
+    search: $search
+    sort: $sort
+    star: $star
+    type: $type
+  ) {
+    items {
+      assessorId
+      bookingId
+      comment
+      id
+      star
+      type
+      createdAt
+      userAssessor {
+        email
+        fullname
+        id
+        phone
+        avatar {
+          fullThumbUrl
+        }
+      }
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

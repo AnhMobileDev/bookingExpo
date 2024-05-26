@@ -1,0 +1,3 @@
+mutation userRejectSettlement($input: RejectSettlementInput!) {
+  userRejectSettlement(input: $input)
+}

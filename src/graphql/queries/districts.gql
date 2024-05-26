@@ -1,0 +1,9 @@
+query districts($provinceCodeName: String!) {
+  districts(provinceCodeName: $provinceCodeName) {
+    code
+    codename
+    divisionType
+    name
+    shortCodename
+  }
+}

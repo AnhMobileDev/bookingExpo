@@ -1,0 +1,3 @@
+mutation deleteMaintenance($input: DeleteMaintenanceInput!) {
+  deleteMaintenance(input: $input)
+}

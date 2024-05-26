@@ -1,0 +1,191 @@
+query mePartner {
+  mePartner {
+    addressMoreInfo
+    avatar {
+      createdAt
+      fileSize
+      fullOriginalUrl
+      fullThumbUrl
+      id
+      isDeleted
+      mimeType
+      name
+      originalUrl
+      ownerId
+      thumbUrl
+      type
+      updatedAt
+      videoUrl
+    }
+    avatarId
+    bank
+    birthday
+    cardNumber
+    citizenId
+    createdAt
+    deletedAt
+    description
+    education {
+      createdAt
+      deletedAt
+      id
+      isActive
+      name
+      type
+      updatedAt
+    }
+    email
+    expenseInfo {
+      cost
+      distance
+      time
+    }
+    fullname
+    hotline
+    id
+    isActive
+    isApproved
+    latitude
+    level {
+      createdAt
+      deletedAt
+      id
+      isActive
+      name
+      type
+      updatedAt
+    }
+    longitude
+    mapAddress
+    parentId
+    parentInfo {
+      addressMoreInfo
+      avatar {
+        createdAt
+        fileSize
+        fullOriginalUrl
+        fullThumbUrl
+        id
+        isDeleted
+        mimeType
+        name
+        originalUrl
+        ownerId
+        thumbUrl
+        type
+        updatedAt
+        videoUrl
+      }
+      avatarId
+      bank
+      birthday
+      cardNumber
+      citizenId
+      createdAt
+      deletedAt
+      description
+      education {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      email
+      expenseInfo {
+        cost
+        distance
+        time
+      }
+      fullname
+      hotline
+      id
+      isActive
+      isApproved
+      latitude
+      level {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      longitude
+      mapAddress
+      parentId
+      parentInfo {
+        addressMoreInfo
+        avatarId
+        bank
+        birthday
+        cardNumber
+        citizenId
+        createdAt
+        deletedAt
+        description
+        email
+        fullname
+        hotline
+        id
+        isActive
+        isApproved
+        latitude
+        longitude
+        mapAddress
+        parentId
+        phone
+        suggestionPoint
+        type
+        updatedAt
+      }
+      phone
+      qualifications {
+        createdAt
+        deletedAt
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      reviewSummary {
+        percent
+        starAverage
+        total
+      }
+      starInfo {
+        star
+        total
+      }
+      suggestionPoint
+      type
+      updatedAt
+    }
+    phone
+    qualifications {
+      createdAt
+      deletedAt
+      id
+      isActive
+      name
+      type
+      updatedAt
+    }
+    reviewSummary {
+      percent
+      starAverage
+      total
+    }
+    starInfo {
+      star
+      total
+    }
+    suggestionPoint
+    type
+    updatedAt
+  }
+}

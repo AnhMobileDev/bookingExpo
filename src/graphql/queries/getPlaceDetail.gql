@@ -1,0 +1,9 @@
+query getPlaceDetail($place_id: String!) {
+  getPlaceDetail(place_id: $place_id) {
+    address
+    lat
+    lng
+    name
+    place_id
+  }
+}

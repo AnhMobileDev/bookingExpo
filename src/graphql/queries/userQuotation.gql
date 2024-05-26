@@ -1,0 +1,41 @@
+query userQuotation($quotationId: String!) {
+  userQuotation(quotationId: $quotationId) {
+    accessories {
+      available
+      id
+      name
+      quantity
+      quotationId
+      unit
+      unitPrice
+    }
+    additionalFees {
+      amount
+      id
+      name
+    }
+    createdAt
+    deletedAt
+    diagnosisFee
+    diagnosisNote
+    diagnostics {
+      description
+      diagnosticCode
+      expense
+      id
+      quotationId
+      quotationPriceListId
+      workingHour
+    }
+    estimatedCompleteAt
+    id
+    operatingNumber
+    operatingUnit
+    rejectReasons
+    repairFee
+    status
+    total
+    transportFee
+    updatedAt
+  }
+}

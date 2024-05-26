@@ -1,0 +1,57 @@
+query reviewsOfProduct(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $limit: Int
+  $page: Int
+  $productId: String!
+  $search: String
+  $sort: SortInput
+  $star: Float
+  $type: ReviewTypeEnum!
+) {
+  reviewsOfProduct(
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    limit: $limit
+    page: $page
+    productId: $productId
+    search: $search
+    sort: $sort
+    star: $star
+    type: $type
+  ) {
+    items {
+      assessorId
+      bookingId
+      comment
+      createdAt
+      deletedAt
+      id
+      orderId
+      personEvaluatedId
+      productId
+      star
+      type
+      updatedAt
+      userAssessor {
+        email
+        fullname
+        id
+        phone
+        isActive
+        avatar {
+          fullThumbUrl
+        }
+      }
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

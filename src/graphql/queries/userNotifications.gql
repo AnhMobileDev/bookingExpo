@@ -1,0 +1,66 @@
+query userNotifications(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isApproved: Boolean
+  $isSeen: Boolean
+  $limit: Int
+  $page: Int
+  $search: String
+  $sort: SortInput
+  $type: NotificationTypeEnum!
+) {
+  userNotifications(
+    filters: $filters
+    isActive: $isActive
+    isApproved: $isApproved
+    isSeen: $isSeen
+    limit: $limit
+    page: $page
+    search: $search
+    sort: $sort
+    type: $type
+  ) {
+    items {
+      body
+      booking {
+        id
+      }
+      createdAt
+      deletedAt
+      executeTime
+      id
+      isActive
+      maintenance {
+        id
+      }
+      objectId
+      objectType
+      seen
+      sourceId
+      sourcePartner {
+        id
+      }
+      sourceType
+      sourceUser {
+        id
+      }
+      targetId
+      targetPartner {
+        id
+      }
+      targetType
+      targetUser {
+       id
+      }
+      title
+      updatedAt
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

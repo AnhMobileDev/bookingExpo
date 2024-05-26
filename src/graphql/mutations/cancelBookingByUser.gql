@@ -1,0 +1,3 @@
+mutation cancelBookingByUser($input: CancelBookingInput!) {
+  cancelBookingByUser(input: $input)
+}

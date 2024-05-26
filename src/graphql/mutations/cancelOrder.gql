@@ -1,0 +1,3 @@
+mutation cancelOrder($input: CancelOrderInput!) {
+  cancelOrder(input: $input)
+}

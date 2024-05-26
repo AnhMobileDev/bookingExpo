@@ -1,0 +1,73 @@
+query storeDetail($id: String!) {
+  storeDetail(id: $id) {
+    addressMoreInfo
+    avatar {
+     fullOriginalUrl
+      fullThumbUrl
+      id
+    }
+    avatarId
+    bank
+    birthday
+    cardNumber
+    citizenId
+    countProduct
+    countTechnician
+    createdAt
+    deletedAt
+    description
+    education {
+      id
+      isActive
+      name
+      type
+    }
+    email
+    expenseInfo {
+      cost
+      distance
+      time
+    }
+    fullname
+    hotline
+    id
+    isActive
+    isAdmin
+    isApproved
+    latitude
+    longitude
+    mapAddress
+    menus
+    parentId
+    phone
+    qualifications {
+      id
+      isActive
+      name
+      type
+    }
+    reviewSummary {
+      percent
+      starAverage
+      total
+    }
+    star
+    starInfo {
+      star
+      total
+    }
+    storeReviewSummary {
+      percent
+      starAverage
+      total
+    }
+    storeStar
+    storeStarInfo {
+      star
+      total
+    }
+    suggestionPoint
+    type
+    updatedAt
+  }
+}

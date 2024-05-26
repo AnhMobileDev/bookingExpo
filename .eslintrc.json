@@ -1,0 +1,65 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "commonjs": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier", "import"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn", // or "error"
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "react/display-name": "off",
+    "import/namespace": "off",
+    "import/no-unresolved": "off",
+    "import/order": ["error", { "newlines-between": "always" }],
+    "import/no-default-export": "warn",
+    "import/named": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-named-as-default": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/exhaustive-deps": "error"
+  },
+  "overrides": [
+    {
+      "files": ["src/screens/**"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    }
+  ]
+}

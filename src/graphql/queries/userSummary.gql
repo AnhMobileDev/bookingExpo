@@ -1,0 +1,6 @@
+query userSummary($input: UserSummaryInput!) {
+  userSummary(input: $input) {
+    activeBooking
+    activeMaintenance
+  }
+}

@@ -1,0 +1,6 @@
+query getCountStatusServiceFeedback {
+  getCountStatusServiceFeedback {
+    quantity
+    status
+  }
+}

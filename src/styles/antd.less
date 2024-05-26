@@ -1,0 +1,138 @@
+// Override antd default css
+button {
+  &.ant-btn {
+    font-weight: 600;
+
+    &.ant-btn-primary {
+      color: @black;
+
+      &:hover {
+        color: @black;
+      }
+
+      &:disabled {
+        background-color: @light_primary;
+        border-color: @light_primary;
+        color: @disabled;
+      }
+    }
+  }
+}
+
+input,
+textarea {
+  &.ant-input {
+    color: #1d192d;
+    padding: 10px 16px;
+
+    &:focus,
+    &:hover {
+      border-color: #1d192d;
+    }
+
+    &:placeholder {
+      color: #676773;
+    }
+  }
+}
+
+.ant-checkbox {
+  .ant-checkbox-inner {
+    &:after {
+      border-color: #1d192d;
+    }
+  }
+
+  & + span {
+    position: relative;
+    top: -4px;
+  }
+}
+
+.ant-form-item {
+  margin-bottom: 0;
+  .ant-form-item-label {
+    & > label {
+      font-weight: 600;
+    }
+  }
+}
+
+.ant-picker {
+  &:hover {
+    border-color: #1d192d;
+  }
+}
+.ant-input-affix-wrapper {
+  padding: 10px 16px;
+}
+
+:where(.css-dev-only-do-not-override-1gic6vy).ant-input:hover {
+  border-color: #1d192d;
+}
+
+.ant-picker-focused,
+.ant-input-affix-wrapper-focused {
+  border-color: #1d192d;
+}
+
+.ant-select-focused.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(
+    .ant-pagination-size-changer
+  ),
+.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover,
+.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):focus {
+  .ant-select-selector {
+    border-color: #1d192d;
+  }
+}
+.ant-notification {
+  .ant-notification-notice-content {
+    .ant-notification-notice-with-icon {
+      span {
+        svg {
+          font-size: 24px;
+        }
+      }
+      .ant-notification-notice-message {
+        font-size: 14px;
+        color: #202c38;
+        font-weight: 500;
+      }
+      .ant-notification-notice-description {
+        font-weight: 400;
+        font-size: 12px;
+        color: #919699;
+      }
+    }
+  }
+}
+
+.ant-upload-list-item,
+.ant-upload-list-item-container {
+  display: none;
+}
+.ant-btn-link > span {
+  font-size: 12px;
+  font-weight: 400;
+  color: #03a1fa;
+}
+.ant-btn-link:disabled > span {
+  font-size: 12px;
+  font-weight: 500;
+  color: #5c6164;
+}
+.ant-btn-link {
+  margin-top: -20px;
+  padding: 0;
+}
+
+.modal {
+  button {
+    height: 20px;
+  }
+  .ant-btn-link > span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #03a1fa;
+  }
+}

@@ -1,0 +1,17 @@
+mutation addAddress($input: CreateAddressInput!) {
+  addAddress(input: $input) {
+    addressDetail
+    addressName
+    contactName
+    contactPhone
+    createdAt
+    deletedAt
+    id
+    isDefault
+    latitude
+    longitude
+    mapAddress
+    updatedAt
+    userId
+  }
+}

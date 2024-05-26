@@ -1,0 +1,3 @@
+mutation completeBookingByUser($input: UpdateBookingStatusInput!) {
+  completeBookingByUser(input: $input)
+}

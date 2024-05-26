@@ -1,0 +1,3 @@
+mutation userRemoveFavoriteProduct($productId: String!) {
+  userRemoveFavoriteProduct(productId: $productId)
+}

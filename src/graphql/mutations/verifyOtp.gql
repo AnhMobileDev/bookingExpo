@@ -1,0 +1,3 @@
+mutation verifyOtp($input: VerifyOtpInput!) {
+  verifyOtp(input: $input)
+}

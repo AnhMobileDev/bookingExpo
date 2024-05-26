@@ -1,0 +1,8 @@
+query provinces {
+  provinces {
+    code
+    codename
+    divisionType
+    name
+  }
+}

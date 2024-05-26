@@ -1,0 +1,6 @@
+query userCountItemForEachStatus {
+  userCountItemForEachStatus {
+    status
+    totalitems
+  }
+}

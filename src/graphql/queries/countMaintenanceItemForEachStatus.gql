@@ -1,0 +1,6 @@
+query countMaintenanceItemForEachStatus {
+  countMaintenanceItemForEachStatus {
+    status
+    totalItem
+  }
+}

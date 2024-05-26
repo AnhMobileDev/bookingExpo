@@ -1,0 +1,30 @@
+fragment PartnerFragment on PartnerEntity {
+  addressMoreInfo
+  avatar {
+    createdAt
+    fileSize
+    fullOriginalUrl
+    fullThumbUrl
+    id
+    isDeleted
+    mimeType
+    name
+    originalUrl
+    ownerId
+    thumbUrl
+    type
+    updatedAt
+  }
+  avatarId
+  birthday
+  createdAt
+  deletedAt
+  email
+  fullname
+  hotline
+  id
+  isActive
+  phone
+  type
+  updatedAt
+}

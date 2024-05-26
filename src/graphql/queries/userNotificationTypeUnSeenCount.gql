@@ -1,0 +1,6 @@
+query userNotificationTypeUnSeenCount {
+  userNotificationTypeUnSeenCount {
+    count
+    type
+  }
+}

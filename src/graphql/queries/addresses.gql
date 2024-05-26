@@ -1,0 +1,17 @@
+query addresses {
+  addresses {
+    addressDetail
+    addressName
+    contactName
+    contactPhone
+    createdAt
+    deletedAt
+    id
+    isDefault
+    latitude
+    longitude
+    mapAddress
+    updatedAt
+    userId
+  }
+}

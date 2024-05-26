@@ -1,0 +1,3 @@
+mutation logout($deviceId: String) {
+  logout(deviceId: $deviceId)
+}

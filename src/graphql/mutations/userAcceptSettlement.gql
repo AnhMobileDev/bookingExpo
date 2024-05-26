@@ -1,0 +1,3 @@
+mutation userAcceptSettlement($settlementId: String!) {
+  userAcceptSettlement(settlementId: $settlementId)
+}

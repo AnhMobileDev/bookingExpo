@@ -1,0 +1,6 @@
+query userCountProductQuotationForEachStatus {
+  userCountProductQuotationForEachStatus {
+    status
+    totalItem
+  }
+}

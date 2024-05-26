@@ -1,0 +1,82 @@
+query partnersForBooking(
+  $filters: [JSONObject!]
+  $isActive: StatusEnum
+  $isAgency: Boolean
+  $isApproved: Boolean
+  $isTechnician: Boolean
+  $latitude: Float!
+  $limit: Int
+  $longitude: Float!
+  $page: Int
+  $search: String
+  $sort: SortInput
+  $sortBy: PartnersForBookingSortBy
+) {
+  partnersForBooking(
+    filters: $filters
+    isActive: $isActive
+    isAgency: $isAgency
+    isApproved: $isApproved
+    isTechnician: $isTechnician
+    latitude: $latitude
+    limit: $limit
+    longitude: $longitude
+    page: $page
+    search: $search
+    sort: $sort
+    sortBy: $sortBy
+  ) {
+    items {
+      addressMoreInfo
+      avatar {
+         fullOriginalUrl
+        fullThumbUrl
+        id
+      }
+      expenseInfo {
+        cost
+        distance
+        time
+      }
+      fullname
+      hotline
+      id
+      isActive
+      isApproved
+      latitude
+      longitude
+      mapAddress
+      phone
+      qualifications {
+        id
+        isActive
+        name
+        type
+        updatedAt
+      }
+      reviewSummary {
+        percent
+        starAverage
+        total
+      }
+      star
+      starInfo {
+        star
+        total
+      }
+      storeStarInfo {
+        star
+        total
+      }
+      suggestionPoint
+      type
+    }
+    meta {
+      currentPage
+      itemCount
+      itemsPerPage
+      totalItems
+      totalPages
+    }
+  }
+}

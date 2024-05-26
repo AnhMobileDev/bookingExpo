@@ -1,0 +1,44 @@
+query myCart {
+  myCart {
+    createdAt
+    deletedAt
+    id
+    items {
+      cartId
+      createdAt
+      deletedAt
+      id
+      product {
+        avatar {
+          fullThumbUrl
+        }
+        id
+        name
+       unitPrice
+       quantity
+      }
+      productId
+      quantity
+      store {
+        avatar {
+          fullThumbUrl
+        }
+        fullname
+        id
+        qualifications {
+          name
+        }
+        storeReviewSummary {
+          percent
+          starAverage
+          total
+        }
+      }
+      total
+      updatedAt
+    }
+    total
+    updatedAt
+    userId
+  }
+}

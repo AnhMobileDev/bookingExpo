@@ -1,0 +1,3 @@
+query checkSerialExist($id: String, $serialNumber: String!) {
+  checkSerialExist(id: $id, serialNumber: $serialNumber)
+}

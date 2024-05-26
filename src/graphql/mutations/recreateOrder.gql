@@ -1,0 +1,3 @@
+mutation recreateOrder($input: ReCreateOrderInput!) {
+  recreateOrder(input: $input)
+}

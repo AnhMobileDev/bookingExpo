@@ -1,0 +1,57 @@
+.ecommerce-content .ant-tabs-top > .ant-tabs-nav {
+  margin: 0px !important;
+}
+.bg-store-ecommerce {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.64) 0%, rgba(0, 0, 0, 0.84) 49.77%),
+    url(https://s3-alpha-sig.figma.com/img/81ab/f5ba/199949560d8eb1b66f5f995dc7ac8604?Expires=1694390400&Signature=cKwv5SSq4B42J3aR-zZhBOxJn9uO23Ner6W6UI7Oeb3K22zVHrklsKGXEnHr4B2TK6R2XX~UVC4okr2vcT2w4-8usA9iD00JmB7HAdbM8XHhg2U8nZxw~xW0AO8oFve4VHhxq-hY0geNOmDBjyINbP96fmY0v64c-TZTuBmQyqlFpzoo4iEPLPNAFxWesr6fbEW4nu-EwHvntf43uq4y4daR55xOSZsgCWj1E3y9PE-0ulhf7VoUR~ihbWdGK6l4yqdXMzJWNP~VT3YZmrzaQQSAJzZB5rniEVN1yZWNEK4g-XYuQAul~cGVOBXiu5b5jry6dE6sGF7N4PC5eXt4Cw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4),
+    lightgray 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.ecommerce-content .ant-input-number-handler-wrap,
+.form-create-quotation .ant-input-number-handler-wrap,
+.hidden-arrow-input .ant-input-number-handler-wrap{
+  display: none;
+}
+
+.ecommerce-detai-store .ant-tabs-nav {
+  background: transparent !important;
+}
+
+.ecommerce-detai-store .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #fff;
+  text-shadow: 0 0 0.25px currentcolor;
+}
+.ecommerce-detai-store .ant-tabs .ant-tabs-tab-btn {
+  color: #fff;
+}
+.ecommerce-detai-store .ant-tabs-ink-bar {
+  border-bottom: 2px solid #fff;
+}
+
+/* width */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.custom-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.text-center .ant-input-number-input{
+  text-align: center;
+}

@@ -1,0 +1,3 @@
+mutation userAcceptQuotation($quotationId: String!) {
+  userAcceptQuotation(quotationId: $quotationId)
+}

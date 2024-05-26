@@ -1,0 +1,3952 @@
+enum ActiveCodeEnum {
+  ACTIVATE
+  FORGOT
+}
+
+enum ActorTypeEnum {
+  ADMIN
+  PARTNER
+  USER
+}
+
+type AddressEntity implements Node {
+  addressDetail: String
+  addressName: String!
+  contactName: String!
+  contactPhone: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  isDefault: Boolean!
+  latitude: Float!
+  longitude: Float!
+  mapAddress: String!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+input AdminChangePasswordInput {
+  currentPassword: String!
+  email: String!
+  newPassword: String!
+}
+
+input AdminCreateNotificationInput {
+  body: String!
+  executeTime: String!
+  isActive: Boolean
+  title: String!
+}
+
+input AdminCreateStoreInput {
+  address: String!
+  avatarId: String
+  description: String
+  email: String!
+  name: String!
+  partnerId: String!
+  phoneNumber: String!
+}
+
+input AdminCreateStoreProductHistoryInput {
+  inputDate: String!
+  partnerId: String!
+  productId: String!
+  quantity: Float!
+  storeId: String!
+  type: StoreProductTypeEnum!
+}
+
+input AdminDeleteStoreInput {
+  id: String!
+  partnerId: String!
+}
+
+type AdminEntity implements Node {
+  address: String
+  addressMoreInfo: String
+  avatar: Media
+  avatarId: String
+  birthday: DateTime
+  createdAt: DateTime!
+  deletedAt: DateTime
+  email: String!
+  fullname: String
+  id: ID!
+  isActive: Boolean!
+  type: String!
+  updatedAt: DateTime!
+}
+
+input AdminForgotPasswordInput {
+  email: String!
+}
+
+type AdminHomePage {
+  countBooking: Float!
+  countMaintenance: Float!
+  countOrder: Float!
+  listBooking: [BookingEntity!]!
+  listMaintenance: [MaintenanceEntity!]!
+  revenue: Float!
+}
+
+input AdminKickPartnerOutOfCourseInput {
+  courseId: ID!
+  partnerId: ID!
+}
+
+input AdminLoginInput {
+  deviceId: String
+  email: String!
+  password: String!
+}
+
+input AdminUpdateNotificationInput {
+  body: String
+  executeTime: String
+  id: String!
+  isActive: Boolean
+  title: String
+}
+
+input AdminUpdateServiceFeedbackInput {
+  answer: String!
+  id: String!
+  imagesAnswerIds: [String!]
+  status: ServiceFeedbacksStatusEnum = WAITING
+}
+
+input AdminUpdateStatusMaintenanceInput {
+  id: String!
+  status: MaintenanceStatusEnum!
+}
+
+input AdminUpdateStoreInput {
+  address: String
+  avatarId: String
+  description: String
+  email: String
+  id: String!
+  name: String
+  partnerId: String
+  phoneNumber: String
+}
+
+input AdminUpdateUserStatusInput {
+  id: String!
+  status: Boolean!
+}
+
+input AdminUserPaginationInput {
+  filters: [JSONObject!]
+  isActive: StatusEnum
+  isApproved: Boolean
+  limit: Int = 10
+  page: Int = 1
+  search: String
+  sort: SortInput
+}
+
+input AgencyCreateTechnicianInput {
+  addressMoreInfo: String!
+  avatarId: String
+  bank: String
+  birthday: String!
+  cardNumber: String
+  citizenId: String!
+  education: String
+  email: String!
+  fullname: String!
+  isActive: Boolean
+  latitude: Float!
+  level: String
+  longitude: Float!
+  mapAddress: String!
+  phone: String!
+  qualifications: [String!]!
+}
+
+input AgencyDeleteTechnicianInput {
+  id: String!
+}
+
+input AgencyUpdateTechnicianInput {
+  addressMoreInfo: String
+  avatarId: String
+  bank: String
+  birthday: String
+  cardNumber: String
+  citizenId: String
+  education: String
+  email: String
+  fullname: String
+  id: String!
+  isActive: Boolean
+  latitude: Float
+  level: String
+  longitude: Float
+  mapAddress: String
+  qualifications: [String!]
+}
+
+enum AnswerType {
+  CHECKBOX
+  MULTIPLE_CHOICE
+  SHORT_ANSWER
+}
+
+type ApproximateAddressUnits {
+  district: DistrictOutput!
+  province: ProvinceOutput!
+  ward: WardOutput!
+}
+
+input ApproximateAddressUnitsArgs {
+  fullAddress: String!
+}
+
+input AssignBookingInput {
+  bookingId: String!
+  technicianId: String!
+}
+
+"""
+AuthAdminConnection
+"""
+type AuthAdminConnection {
+  accessToken: String!
+  admin: AdminEntity!
+  refreshToken: String!
+}
+
+type AuthBiometricEntity {
+  biometricId: String!
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+"""
+AuthConnection
+"""
+type AuthConnection {
+  accessToken: String!
+  refreshToken: String!
+  user: UserEntity!
+}
+
+input AuthSocialInput {
+  deviceId: String
+  socialToken: String!
+  socialType: SocialAccountTypeEnum!
+}
+
+type BasePaginationMeta {
+  currentPage: Float!
+  itemCount: Float!
+  itemsPerPage: Float!
+  totalItems: Float!
+  totalPages: Float!
+}
+
+input BiometricLoginInput {
+  biometricId: String!
+  deviceId: String
+}
+
+type BookingConnection {
+  items: [BookingEntity!]
+  meta: BasePaginationMeta!
+}
+
+type BookingEntity implements Node {
+  addressMoreInfo: String
+  code: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String
+  id: ID!
+  latitude: Float!
+  longitude: Float!
+  mapAddress: String
+  medias: [Media!]!
+  partner: PartnerEntity!
+  partnerId: String!
+  problemTexts: [String!]
+  problems: [CategoryEntity!]
+  quotationAccepted: QuotationEntity
+  scheduleReason: String
+  scheduleTime: DateTime
+  settlementAccepted: SettlementEntity
+  status: BookingStatusEnum!
+  statusDetail: BookingStatusEntity
+  technician: PartnerEntity
+  technicianCanReviewUser: Boolean!
+  technicianId: String
+  technicianReviewUser: ReviewEntity
+  transportDistance: Float!
+  transportDuration: Float!
+  transportFee: Float!
+  updatedAt: DateTime!
+  user: UserEntity!
+  userCanReviewAgency: Boolean!
+  userCanReviewTechnician: Boolean!
+  userId: String!
+  userReviewAgency: ReviewEntity
+  userReviewTechnician: ReviewEntity
+  vehicle: VehicleEntity!
+  vehicleId: String!
+}
+
+type BookingStatusEntity implements Node {
+  bookingId: String!
+  createdAt: DateTime!
+  id: ID!
+  note: String
+  partnerId: String
+  reasons: [CategoryEntity!]
+  scheduleReason: String
+  scheduleTime: DateTime
+  status: BookingStatusEnum!
+  userId: String
+}
+
+enum BookingStatusEnum {
+  ASSIGNED_TECHNICIAN
+  CANCEL
+  COMPLETE
+  QUOTATION_ACCEPTED
+  QUOTATION_REJECTED
+  QUOTATION_REQUESTED
+  RESCHEDULED
+  SETTLEMENT_ACCEPTED
+  SETTLEMENT_REJECTED
+  SETTLEMENT_REQUESTED
+  TECHNICIAN_ARRIVED
+  TECHNICIAN_ARRIVING
+  WAIT_FOR_CONFIRM
+}
+
+input CancelBookingInput {
+  bookingId: String!
+  note: String!
+  reasons: [String!]!
+}
+
+input CancelMaintenanceInput {
+  maintenanceId: String!
+  note: String
+  reasons: [String!]!
+}
+
+input CancelOrderInput {
+  note: String
+  orderId: String!
+  reasons: [String!]!
+}
+
+type CartEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  items: [CartItemEntity!]!
+  total: Float!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+type CartItemEntity implements Node {
+  cartId: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  product: ProductEntity!
+  productId: String!
+  quantity: Float!
+  store: PartnerEntity
+  total: Float!
+  updatedAt: DateTime!
+}
+
+input CartItemInput {
+  productId: String!
+  quantity: Float!
+}
+
+type CategoryConnection {
+  items: [CategoryEntity!]
+  meta: BasePaginationMeta!
+}
+
+type CategoryEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  type: CategoryTypeEnum!
+  updatedAt: DateTime!
+}
+
+enum CategoryTypeEnum {
+  CANCEL_MAINTENANCE_REASON
+  CANCEL_ORDER_REASON_BY_PARTNER
+  CANCEL_ORDER_REASON_BY_USER
+  CANCEL_QUOTATION_REASON
+  CANCEL_REASON
+  CANCEL_REASON_BY_PARTNER
+  EDUCATION
+  LEVEL
+  MANUFACTURER
+  MODEL
+  ORIGIN
+  PART_OF_PRODUCT
+  PROBLEM
+  PRODUCT_UNIT
+  QUALIFICATION
+  QUOTATION_PRICE_LIST
+  STORE_PRODUCT
+  VEHICLE_TYPE
+}
+
+input ConnectSocialAccountInput {
+  socialToken: String!
+  socialType: SocialAccountTypeEnum!
+}
+
+type CourseConnection {
+  items: [CourseEntity!]
+  meta: BasePaginationMeta!
+}
+
+type CourseEnrollmentEntity implements Node {
+  courseId: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  partner: PartnerEntity!
+  partnerId: String!
+  updatedAt: DateTime!
+}
+
+type CourseEntity implements Node {
+  address: String!
+  banner: Media
+  bannerId: String
+  content: String
+  createdAt: DateTime!
+  deletedAt: DateTime
+  endDate: DateTime
+  enrolledCount: Float
+  enrollments: [CourseEnrollmentEntity!]!
+  id: ID!
+  isActive: Boolean!
+  isEnrolled: Boolean
+  name: String!
+  openDate: DateTime!
+  price: Float
+  startDate: DateTime!
+  teacher: String!
+  teacherDescription: String
+  updatedAt: DateTime!
+  videoUrl: String
+}
+
+input CreateAccessaryInput {
+  avatarId: String!
+  descriptionImageIds: [String!]
+  detail: String
+  isActive: Boolean!
+  isFixedCost: Boolean!
+  isNew: Boolean!
+  modelId: String
+  name: String!
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  originId: String
+  partId: String!
+  partNumber: String
+  productDevices: [ProductDeviceInput!]
+  productUnitId: String!
+  quantity: Float!
+  serialNumber: String
+  type: ProductTypeEnum!
+  unitPrice: Float
+}
+
+input CreateAddressInput {
+  addressDetail: String
+  addressName: String!
+  contactName: String!
+  contactPhone: String!
+  isDefault: Boolean! = false
+  latitude: Float!
+  longitude: Float!
+  mapAddress: String!
+}
+
+input CreateAgentInput {
+  addressMoreInfo: String
+  description: String
+  email: String
+  fullname: String!
+  hotline: String
+  latitude: Float!
+  longitude: Float!
+  mapAddress: String!
+  phone: String!
+  qualifications: [String!]
+  suggestionPoint: Float
+}
+
+input CreateBookingInput {
+  addressMoreInfo: String
+  description: String
+  latitude: Float!
+  longitude: Float!
+  mapAddress: String!
+  mediaIds: [String!]
+  partnerId: String!
+  problems: [String!]
+  transportDistance: Float!
+  transportDuration: Float!
+  transportFee: Float!
+  vehicle: QuickAddVehicleInput
+  vehicleId: String
+}
+
+input CreateCartInput {
+  cartItems: [CartItemInput!]!
+}
+
+input CreateCategoryInput {
+  isActive: Boolean!
+  name: String!
+  type: CategoryTypeEnum = EDUCATION
+}
+
+input CreateCourseInput {
+  address: String!
+  bannerId: String
+  content: String
+  endDate: DateTime
+  isActive: Boolean
+  name: String!
+  openDate: DateTime!
+  price: Float
+  startDate: DateTime!
+  teacher: String!
+  teacherDescription: String
+  videoUrl: String
+}
+
+input CreateDiscountCodeInput {
+  endDate: DateTime
+  isActive: Boolean
+  limit: Float
+  limitPerAccount: Float
+  minOrderValue: Float
+  name: String!
+  productIds: [String!]
+  startDate: DateTime!
+  unit: DiscountCodeUnitEnum = PERCENTAGE
+  value: Float!
+}
+
+input CreateDocumentInput {
+  fileIds: [String!]!
+  isActive: Boolean
+  name: String!
+  referenceId: String!
+}
+
+input CreateFeedbackInput {
+  content: String!
+  feedbackType: FeedbackType!
+  medias: [String!]
+}
+
+input CreateGuideInput {
+  description: String
+  isActive: Boolean
+  name: String!
+}
+
+input CreateInstructionInput {
+  description: String!
+  guideId: String!
+  isActive: Boolean
+  name: String!
+}
+
+input CreateMaintenanceInput {
+  accessories: [MaintenanceAccessoryInput!]
+  addressMoreInfo: String!
+  endDate: DateTime!
+  isActive: Boolean!
+  latitude: Float!
+  longitude: Float!
+  maintenanceLevel: MaintenanceLevelEnum!
+  mapAddress: String!
+  note: String
+  routineLevel: Float
+  startDate: DateTime!
+  vehicleId: String!
+}
+
+input CreateOrderReviewInput {
+  orderId: String!
+  partnerReview: CreatePartnerReviewInput
+  productReviews: [CreateProductReviewInput!]
+}
+
+input CreateOrdersInput {
+  addressId: String!
+  orders: [OrderInput!]!
+  totalPayment: Float!
+}
+
+input CreatePartnerReviewInput {
+  comment: String!
+  partnerId: String!
+  star: Float!
+}
+
+input CreatePasswordRegisterInput {
+  password: String!
+  phone: String!
+}
+
+input CreateProductReviewInput {
+  comment: String!
+  productId: String!
+  star: Float!
+}
+
+input CreateProductVehicleInput {
+  avatarId: String!
+  descriptionImageIds: [String!]
+  detail: String
+  isActive: Boolean!
+  isFixedCost: Boolean!
+  isNew: Boolean!
+  manufacturerId: String!
+  modelId: String
+  name: String!
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  ordinalNumber: Float
+  originId: String
+  productUnitId: String!
+  quantity: Float!
+  serialNumber: String
+  type: ProductTypeEnum!
+  unitPrice: Float
+  vehicleRegistrationPlate: String
+  vehicleTypeId: String!
+  vinNumber: String!
+  yearOfManufacture: Float
+}
+
+input CreateQuestionInput {
+  answerType: AnswerType
+  answers: [String!]!
+  isRequired: Boolean!
+  question: String!
+}
+
+input CreateQuotationInput {
+  accessories: [QuotationAccessoryInput!]!
+  additionalFees: [QuotationAdditionalFeeInput!]
+  bookingId: String!
+  diagnosisFee: Float!
+  diagnosisNote: String
+  diagnostics: [QuotationDiagnosticInput!]!
+  estimatedCompleteAt: DateTime
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  repairFee: Float!
+  transportFee: Float!
+}
+
+input CreateQuotationPriceListInput {
+  accessoriesName: String!
+  diagnosticCode: String!
+  expense: Float!
+  fixable: Boolean!
+  isActive: Boolean!
+  vehicleType: String!
+  workingCode: String!
+  workingHour: Float!
+}
+
+input CreateReferenceInput {
+  description: String
+  isActive: Boolean
+  name: String!
+}
+
+input CreateReviewInput {
+  bookingId: String
+  comment: String!
+  orderId: String
+  personEvaluatedId: String
+  productId: String
+  reviewType: ReviewTypeEnum
+  star: Float!
+}
+
+input CreateServiceFeedbackInput {
+  content: String!
+  imagesIds: [String!]
+  type: ServiceFeedbackTypeEnum = QUESTION
+}
+
+input CreateSettlementInput {
+  additionalFees: [SettlementAdditionalFeeInput!]!
+  quotationId: String!
+}
+
+input CreateStoreInput {
+  address: String!
+  avatarId: String
+  description: String
+  email: String!
+  name: String!
+  phoneNumber: String!
+}
+
+input CreateStoreProductHistoryInput {
+  inputDate: String!
+  productId: String!
+  quantity: Float!
+  storeId: String!
+  type: StoreProductTypeEnum!
+}
+
+input CreateSurveyHistoryInput {
+  results: [SurveyResultInput!]!
+  surveyId: String!
+}
+
+input CreateSurveyInput {
+  isActive: Boolean!
+  name: String!
+  questions: [CreateQuestionInput!]!
+}
+
+input CreateTechnicianInput {
+  addressMoreInfo: String!
+  avatarId: String
+  bank: String
+  birthday: String!
+  cardNumber: String
+  citizenId: String!
+  education: String
+  email: String!
+  fullname: String!
+  latitude: Float!
+  level: String
+  longitude: Float!
+  mapAddress: String!
+  parentId: String
+  phone: String!
+  qualifications: [String!]!
+  suggestionPoint: Float
+}
+
+input CreateTodoInput {
+  isActive: Boolean!
+  title: String!
+}
+
+input CreateVehicleInput {
+  addressMoreInfo: String
+  avatarId: String
+  detail: String
+  latitude: Float!
+  longitude: Float!
+  manufacturerId: String!
+  mapAddress: String!
+  modelId: String!
+  name: String!
+  operatingNumber: Float!
+  operatingUnit: OperatingUnitEnum! = HOURS
+  ordinalNumber: Float
+  originId: String!
+  serialNumber: String
+  vehicleRegistrationPlate: String
+  vehicleTypeId: String!
+  vinNumber: String!
+  yearOfManufacture: Float!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeleteCartItemsInput {
+  cartItems: [String!]!
+}
+
+input DeleteCategoryInput {
+  id: String!
+}
+
+input DeleteCourseInput {
+  id: String!
+}
+
+input DeleteDiscountCodeInput {
+  id: String!
+}
+
+input DeleteDocumentInput {
+  id: String!
+}
+
+input DeleteGuideInput {
+  id: String!
+}
+
+input DeleteInstructionInput {
+  id: String!
+}
+
+input DeleteMaintenanceInput {
+  id: String!
+}
+
+input DeleteNotificationInput {
+  id: String!
+}
+
+input DeletePartnerInput {
+  email: String
+  password: String!
+  phone: String!
+}
+
+input DeleteQuotationPriceListInput {
+  id: String!
+}
+
+input DeleteReferenceInput {
+  id: String!
+}
+
+input DeleteStoreInput {
+  id: String!
+}
+
+input DeleteSurveyInput {
+  id: String!
+}
+
+input DeleteUserInput {
+  email: String
+  password: String!
+  phone: String!
+}
+
+input DisconnectSocialAccountInput {
+  socialType: SocialAccountTypeEnum!
+}
+
+type DiscountCodeConnection {
+  items: [DiscountCodeEntity!]
+  meta: BasePaginationMeta!
+}
+
+type DiscountCodeEntity implements Node {
+  admin: AdminEntity
+  adminId: String
+  createdAt: DateTime!
+  deletedAt: DateTime
+  endDate: DateTime
+  id: ID!
+  isActive: Boolean!
+  isAssignAllProduct: Boolean!
+  limit: Float
+  limitPerAccount: Float
+  minOrderValue: Float!
+  name: String!
+  partner: PartnerEntity
+  partnerId: String
+  products: [ProductEntity!]
+  startDate: DateTime!
+  unit: DiscountCodeUnitEnum!
+  updatedAt: DateTime!
+  usedCount: Float!
+  value: Float!
+}
+
+enum DiscountCodeUnitEnum {
+  PERCENTAGE
+  VND
+}
+
+type DiscountStatusAndEachStatusCount {
+  isActivities: Boolean!
+  totalItem: Float!
+}
+
+type DistrictOutput {
+  code: String!
+  codename: String!
+  divisionType: String!
+  name: String!
+  shortCodename: String!
+}
+
+type DocumentConnection {
+  items: [DocumentEntity!]
+  meta: BasePaginationMeta!
+}
+
+type DocumentEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  fileIds: [String!]!
+  files: [Media!]!
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  reference: ReferenceEntity!
+  referenceId: String!
+  updatedAt: DateTime!
+}
+
+type Expense {
+  cost: Float
+  distance: Float
+  time: Float
+}
+
+input ExportUserInput {
+  isActive: StatusEnum
+  search: String
+  sort: SortInput
+}
+
+type FeedbackEntity implements Node {
+  content: String!
+  createdAt: DateTime!
+  feedbackMedias: [FeedbackMediaEntity!]
+  feedbackType: FeedbackType!
+  id: ID!
+  status: FeedbackStatus!
+  updatedAt: DateTime!
+  updatedStatusAt: DateTime
+  user: UserEntity!
+}
+
+type FeedbackMediaEntity implements Node {
+  Feedback: FeedbackEntity!
+  id: ID!
+  media: Media!
+  ordinal: Float!
+}
+
+enum FeedbackStatus {
+  DONE
+  IN_PROGRESS
+  NONE
+}
+
+enum FeedbackType {
+  COMPLAIN
+  QNA
+  SUPPORT
+}
+
+enum FileType {
+  EXCEL
+  FILE
+  IMAGE
+  INVOICE
+  VIDEO
+}
+
+type GuideConnection {
+  items: [GuideEntity!]
+  meta: BasePaginationMeta!
+}
+
+type GuideEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String
+  id: ID!
+  instructions: [InstructionEntity!]
+  isActive: Boolean!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type InstructionConnection {
+  items: [InstructionEntity!]
+  meta: BasePaginationMeta!
+}
+
+type InstructionEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String!
+  guide: GuideEntity!
+  guideId: String!
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  updatedAt: DateTime!
+}
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+input LatLng {
+  lat: Float!
+  lng: Float!
+}
+
+type MaintenanceAccessory {
+  id: Float!
+  name: String!
+  quantity: Float!
+  unit: String!
+}
+
+type MaintenanceAccessoryEntity implements Node {
+  accessoryId: Float!
+  createdAt: DateTime!
+  id: ID!
+  isAvailable: Boolean!
+  maintenanceId: String!
+  name: String!
+  quantity: Float!
+  unit: String!
+}
+
+input MaintenanceAccessoryInput {
+  id: Float!
+  isAvailable: Boolean!
+}
+
+type MaintenanceConnection {
+  items: [MaintenanceEntity!]
+  meta: BasePaginationMeta!
+}
+
+type MaintenanceEntity implements Node {
+  accessories: [MaintenanceAccessoryEntity!]
+  addressMoreInfo: String
+  code: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  endDate: DateTime
+  id: ID!
+  isActive: Boolean!
+  latitude: Float!
+  longitude: Float!
+  maintenanceLevel: MaintenanceLevelEnum!
+  mapAddress: String!
+  note: String
+  routineLevel: Float
+  startDate: DateTime
+  status: MaintenanceStatusEnum!
+  statusDetail: MaintenanceStatusEntity
+  updatedAt: DateTime!
+  user: UserEntity
+  userId: String!
+  vehicle: VehicleEntity
+  vehicleId: String!
+}
+
+enum MaintenanceLevelEnum {
+  INCURRED
+  ROUTINE
+}
+
+type MaintenanceStatusAndItemCount {
+  status: String!
+  totalItem: Float!
+}
+
+type MaintenanceStatusCategoryEntity implements Node {
+  createdAt: DateTime!
+  id: ID!
+  maintenanceStatusId: String!
+  name: String!
+  type: CategoryTypeEnum!
+}
+
+type MaintenanceStatusEntity implements Node {
+  createdAt: DateTime!
+  id: ID!
+  maintenanceId: String!
+  note: String
+  reasons: [MaintenanceStatusCategoryEntity!]
+  status: MaintenanceStatusEnum!
+  userId: String
+}
+
+enum MaintenanceStatusEnum {
+  ACCEPTED
+  CANCEL
+  DENY
+  NEW
+}
+
+type Media implements Node {
+  createdAt: DateTime!
+  fileSize: Int
+  fullOriginalUrl: String
+  fullThumbUrl: String
+  id: ID!
+  isDeleted: Boolean!
+  mimeType: String
+  name: String!
+  originalUrl: String!
+  ownerId: String
+  thumbUrl: String
+  type: FileType!
+  updatedAt: DateTime!
+  videoUrl: String
+}
+
+type Mutation {
+  addAddress(input: CreateAddressInput!): AddressEntity!
+  addCartItems(input: CreateCartInput!): CartEntity!
+  addFeedback(input: CreateFeedbackInput!): FeedbackEntity!
+  adminAddAgency(input: CreateAgentInput!): PartnerEntity!
+  adminAddProductForStore(input: AdminCreateStoreProductHistoryInput!): Boolean!
+  adminCancelOrder(input: CancelOrderInput!): Boolean!
+  adminChangePassword(input: AdminChangePasswordInput!): Boolean!
+  adminCreateCategory(input: CreateCategoryInput!): Boolean!
+  adminCreateCourse(input: CreateCourseInput!): Boolean!
+  adminCreateDiscountCode(input: CreateDiscountCodeInput!): Boolean!
+  adminCreateDocument(input: CreateDocumentInput!): Boolean!
+  adminCreateFreelancerTechnician(input: NewFreelancerTechnicianInput!): PartnerEntity!
+  adminCreateGuide(input: CreateGuideInput!): Boolean!
+  adminCreateInstruction(input: CreateInstructionInput!): Boolean!
+  adminCreateNotification(input: AdminCreateNotificationInput!): Boolean!
+  adminCreateProductAccessary(input: CreateAccessaryInput!): ProductEntity!
+  adminCreateProductVehicle(input: CreateProductVehicleInput!): ProductEntity!
+  adminCreateReference(input: CreateReferenceInput!): Boolean!
+  adminCreateStore(input: AdminCreateStoreInput!): Boolean!
+  adminCreateSurvey(input: CreateSurveyInput!): Boolean!
+  adminCreateTechnician(input: CreateTechnicianInput!): PartnerEntity!
+  adminDeleteCategory(input: DeleteCategoryInput!): Boolean!
+  adminDeleteCourse(input: DeleteCourseInput!): Boolean!
+  adminDeleteDiscountCode(input: DeleteDiscountCodeInput!): Boolean!
+  adminDeleteDocument(input: DeleteDocumentInput!): Boolean!
+  adminDeleteGuide(input: DeleteGuideInput!): Boolean!
+  adminDeleteInstruction(input: DeleteInstructionInput!): Boolean!
+  adminDeleteNotification(input: DeleteNotificationInput!): Boolean!
+  adminDeleteReference(input: DeleteReferenceInput!): Boolean!
+  adminDeleteStore(input: AdminDeleteStoreInput!): Boolean!
+  adminDeleteSurvey(input: DeleteSurveyInput!): Boolean!
+  adminForgotPassword(input: AdminForgotPasswordInput!): Boolean!
+  adminKickPartnerOutOfCourse(input: AdminKickPartnerOutOfCourseInput!): Boolean!
+  adminLogin(input: AdminLoginInput!): AuthAdminConnection!
+  adminRemoveAgency(id: ID): Boolean!
+  adminRemoveProduct(id: String!): Boolean!
+  adminRemoveTechnician(id: String!): Boolean!
+  adminRespondProductQuotation(input: RespondProductQuotationInput!): Boolean!
+  adminUpdateAccessary(input: UpdateAccessaryInput!): ProductEntity!
+  adminUpdateAgency(input: UpdateAgentInput!): PartnerEntity!
+  adminUpdateAgencyStatus(input: UpdateAgentStatusInput!): PartnerEntity!
+  adminUpdateCategory(input: UpdateCategoryInput!): CategoryEntity!
+  adminUpdateCourse(input: UpdateCourseInput!): CourseEntity!
+  adminUpdateCourseStatus(input: UpdateCourseStatusInput!): CourseEntity!
+  adminUpdateDiscountCode(input: UpdateDiscountCodeInput!): DiscountCodeEntity!
+  adminUpdateDiscountCodeStatus(input: UpdateDiscountStatusInput!): DiscountCodeEntity!
+  adminUpdateDocument(input: UpdateDocumentInput!): DocumentEntity!
+  adminUpdateDocumentStatus(input: UpdateDocumentStatusInput!): DocumentEntity!
+  adminUpdateGuide(input: UpdateGuideInput!): GuideEntity!
+  adminUpdateGuideStatus(input: UpdateGuideStatusInput!): GuideEntity!
+  adminUpdateInstruction(input: UpdateInstructionInput!): InstructionEntity!
+  adminUpdateInstructionStatus(input: UpdateInstructionStatusInput!): InstructionEntity!
+  adminUpdateNotification(input: AdminUpdateNotificationInput!): NotificationEntity!
+  adminUpdateNotificationStatus(input: UpdateNotificationStatusInput!): NotificationEntity!
+  adminUpdateOrderStatus(input: UpdateOrderInput!): Boolean!
+  adminUpdateProductStatus(input: UpdateProductStatusInput!): ProductEntity!
+  adminUpdateProductVehicle(input: UpdateProductVehicleInput!): ProductEntity!
+  adminUpdateReference(input: UpdateReferenceInput!): ReferenceEntity!
+  adminUpdateReferenceStatus(input: UpdateReferenceStatusInput!): ReferenceEntity!
+  adminUpdateServiceFeedback(input: AdminUpdateServiceFeedbackInput!): ServiceFeedbackEntity!
+  adminUpdateStatusMaintenance(input: AdminUpdateStatusMaintenanceInput!): Boolean!
+  adminUpdateStore(input: AdminUpdateStoreInput!): StoreEntity!
+  adminUpdateStorePassword(input: UpdatePartnerPasswordInput!): PartnerEntity!
+  adminUpdateSurvey(input: UpdateSurveyInput!): SurveyEntity!
+  adminUpdateSurveyStatus(input: UpdateSurveyStatusInput!): SurveyEntity!
+  adminUpdateTechnician(input: UpdateTechnicianInput!): PartnerEntity!
+  adminUpdateTechnicianApproveStatus(input: UpdateTechnicianApproveInput!): PartnerEntity!
+  adminUpdateTechnicianStatus(input: UpdateAgentStatusInput!): PartnerEntity!
+  adminUpdateUserStatus(input: AdminUpdateUserStatusInput!): Boolean!
+  agencyAssignBooking(input: AssignBookingInput!): Boolean!
+  agencyCreateTechnician(input: AgencyCreateTechnicianInput!): PartnerEntity!
+  agencyDeleteTechnician(input: AgencyDeleteTechnicianInput!): Boolean!
+  agencyUpdateTechnician(input: AgencyUpdateTechnicianInput!): PartnerEntity!
+  agencyUpdateTechnicianStatus(input: UpdateAgentStatusInput!): PartnerEntity!
+  biometricLogin(input: BiometricLoginInput!): AuthConnection!
+  cancelBookingByUser(input: CancelBookingInput!): Boolean!
+  cancelMaintenance(input: CancelMaintenanceInput!): Boolean!
+  cancelOrder(input: CancelOrderInput!): Boolean!
+  completeBookingByUser(input: UpdateBookingStatusInput!): Boolean!
+  connectSocialAccount(input: ConnectSocialAccountInput!): SocialAccount!
+  createBooking(input: CreateBookingInput!): BookingEntity!
+  createMaintenance(input: CreateMaintenanceInput!): MaintenanceEntity!
+  createOrders(input: CreateOrdersInput!): [OrderEntity!]!
+  createPasswordNewUser(input: CreatePasswordRegisterInput!): Boolean!
+  createQuotation(input: CreateQuotationInput!): QuotationEntity!
+  createQuotationPriceList(input: CreateQuotationPriceListInput!): QuotationPriceListEntity!
+  createServiceFeedback(input: CreateServiceFeedbackInput!): ServiceFeedbackEntity!
+  createSettlement(input: CreateSettlementInput!): SettlementEntity!
+  createTodo(input: CreateTodoInput!): TodoEntity!
+  createVehicle(input: CreateVehicleInput!): VehicleEntity!
+  deleteCartItems(input: DeleteCartItemsInput!): Boolean!
+  deleteMaintenance(input: DeleteMaintenanceInput!): Boolean!
+  deletePartner(input: DeletePartnerInput!): Boolean!
+  deleteQuotationPriceList(input: DeleteQuotationPriceListInput!): Boolean!
+  deleteTodo(id: String!): Boolean!
+  deleteUser(input: DeleteUserInput!): Boolean!
+  disconnectSocialAccount(input: DisconnectSocialAccountInput!): Boolean!
+  enrollCourse(id: String!): Boolean!
+  logout(deviceId: String): Boolean!
+  partnerAddProductForStore(input: CreateStoreProductHistoryInput!): Boolean!
+  partnerCancelBooking(input: CancelBookingInput!): Boolean!
+  partnerCancelOrder(input: CancelOrderInput!): Boolean!
+  partnerCreateDiscountCode(input: PartnerCreateDiscountCodeInput!): Boolean!
+  partnerCreateProductAccessary(input: PartnerCreateAccessaryInput!): ProductEntity!
+  partnerCreateProductVehicle(input: PartnerCreateProductVehicleInput!): ProductEntity!
+  partnerCreateReview(input: CreateReviewInput!): Boolean!
+  partnerCreateServiceFeedback(input: CreateServiceFeedbackInput!): ServiceFeedbackEntity!
+  partnerCreateStore(input: CreateStoreInput!): Boolean!
+  partnerDeleteDiscountCode(input: DeleteDiscountCodeInput!): Boolean!
+  partnerDeleteStore(input: DeleteStoreInput!): Boolean!
+  partnerEndDiscount(id: String!): Boolean!
+  partnerForgotPassword(input: PartnerForgotPasswordInput!): Boolean!
+  partnerLogin(input: PartnerLoginInput!): PartnerAuthConnection!
+  partnerRemoveProduct(id: String!): Boolean!
+  partnerRemoveServiceFeedback(id: String!): Boolean!
+  partnerRescheduleBooking(input: ScheduleBookingInput!): Boolean!
+  partnerRespondProductQuotation(input: RespondProductQuotationInput!): Boolean!
+  partnerSubmitSurvey(input: CreateSurveyHistoryInput!): Boolean!
+  partnerUpdateAccessary(input: PartnerUpdateAccessaryInput!): ProductEntity!
+  partnerUpdateDiscountCode(input: PartnerUpdateDiscountCodeInput!): DiscountCodeEntity!
+  partnerUpdateDiscountCodeStatus(input: UpdateDiscountStatusInput!): DiscountCodeEntity!
+  partnerUpdateMenuConfigs(input: PartnerUpdateMenuConfigsInput!): PartnerEntity!
+  partnerUpdateOrderStatus(input: UpdateOrderInput!): Boolean!
+  partnerUpdatePassword(input: UpdatePartnerPasswordInput!): Boolean!
+  partnerUpdateProductStatus(input: UpdateProductStatusInput!): ProductEntity!
+  partnerUpdateProductVehicle(input: PartnerUpdateProductVehicleInput!): ProductEntity!
+  partnerUpdateProfile(input: UpdatePartnerBasicInfoInput!): PartnerEntity!
+  partnerUpdateServiceFeedback(input: UpdateServiceFeedbackInput!): ServiceFeedbackEntity!
+  partnerUpdateStore(input: UpdateStoreInput!): StoreEntity!
+  reCreateBooking(input: ReCreateBookingInput!): BookingEntity!
+  reCreateQuotation(input: CreateQuotationInput!): QuotationEntity!
+  reCreateSettlement(input: CreateSettlementInput!): SettlementEntity!
+  recreateOrder(input: ReCreateOrderInput!): Boolean!
+  registerBiometricLogin: AuthBiometricEntity!
+  registerFreelancerTechnician(input: NewFreelancerTechnicianInput!): PartnerEntity!
+  removeAddress(id: ID): Boolean!
+  removeMedia(id: ID): Media!
+  removeServiceFeedback(id: String!): Boolean!
+  removeVehicle(id: String!): Boolean!
+  resendOtp(input: ResendOtpInput!): Boolean!
+  seenNotification(id: String!): Boolean!
+  socialLogin(input: AuthSocialInput!): AuthConnection!
+  technicianArrivedBooking(input: UpdateBookingStatusInput!): Boolean!
+  technicianArrivingBooking(input: UpdateBookingStatusInput!): Boolean!
+  testPubSub: Boolean!
+  unregisterBiometricLogin(biometricId: String!): Boolean!
+  updateAddress(input: UpdateAddressInput!): AddressEntity!
+  updateAdmin(input: UpdateAdminInput!): AdminEntity!
+  updateMaintenance(input: UpdateMaintenanceInput!): MaintenanceEntity!
+  updateQuotationPriceList(input: UpdateQuotationPriceListInput!): QuotationPriceListEntity!
+  updateServiceFeedback(input: UpdateServiceFeedbackInput!): ServiceFeedbackEntity!
+  updateTodo(input: UpdateTodoInput!): TodoEntity!
+  updateUserInfo(input: UpdateUserInput!): Boolean!
+  updateUserSetting(input: UpdateUserSettingInput!): UserSettingEntity!
+  updateVehicle(input: UpdateVehicleInput!): VehicleEntity!
+  userAcceptQuotation(quotationId: String!): Boolean!
+  userAcceptSettlement(settlementId: String!): Boolean!
+  userAddFavoriteProduct(productId: String!): Boolean!
+  userAddMultipleFavoriteProduct(input: UserAddMultiFavoriteProductInput!): Boolean!
+  userChangePassword(input: UserChangePasswordInput!): Boolean!
+  userCreateOrderReview(input: CreateOrderReviewInput!): Boolean!
+  userCreateProductQuotation(input: ProductQuotationInput!): ProductQuotationEntity!
+  userCreateReview(input: CreateReviewInput!): Boolean!
+  userForgotPassword(input: UserForgotPasswordInput!): Boolean!
+  userLogin(input: UserLoginInput!): AuthConnection!
+  userRegister(input: RegisterInput!): Float!
+  userRejectQuotation(input: RejectQuotationInput!): Boolean!
+  userRejectSettlement(input: RejectSettlementInput!): Boolean!
+  userRemoveFavoriteProduct(productId: String!): Boolean!
+  userRemoveMultiFavoriteProduct(input: UserRemoveMultiFavoriteProductInput!): Boolean!
+  userSubmitSurvey(input: CreateSurveyHistoryInput!): Boolean!
+  userUpdateOrderStatus(input: UpdateOrderInput!): Boolean!
+  verifyOtp(input: VerifyOtpInput!): Boolean!
+}
+
+input NewFreelancerTechnicianInput {
+  addressMoreInfo: String!
+  avatarId: String
+  bank: String
+  birthday: String!
+  cardNumber: String
+  citizenId: String!
+  education: String
+  email: String!
+  fullname: String!
+  latitude: Float!
+  longitude: Float!
+  mapAddress: String!
+  password: String!
+  phone: String!
+  qualifications: [String!]!
+  suggestionPoint: Float
+}
+
+"""
+Node
+"""
+interface Node {
+  id: ID!
+}
+
+enum NotificationActionUserEnum {
+  ADMIN
+  AGENCY
+  TECHNICIAN
+  USER
+}
+
+type NotificationConnection {
+  items: [NotificationEntity!]
+  meta: BasePaginationMeta!
+}
+
+type NotificationEntity implements Node {
+  body: String!
+  booking: BookingEntity
+  createdAt: DateTime!
+  deletedAt: DateTime
+  executeTime: DateTime
+  id: ID!
+  isActive: Boolean
+  maintenance: MaintenanceEntity
+  objectId: String
+  objectType: NotificationTypeEnum!
+  seen: Boolean!
+  sourceId: String
+  sourcePartner: PartnerEntity
+  sourceType: NotificationActionUserEnum
+  sourceUser: UserEntity
+  targetId: String
+  targetPartner: PartnerEntity
+  targetType: NotificationActionUserEnum
+  targetUser: UserEntity
+  title: String!
+  updatedAt: DateTime!
+}
+
+enum NotificationTypeEnum {
+  BOOKING
+  MAINTENANCE
+  ORDER
+  OTHER
+  SYSTEM
+}
+
+type NotificationTypeUnSeenCount {
+  count: Float!
+  type: NotificationTypeEnum!
+}
+
+enum OperatingUnitEnum {
+  HOURS
+  KM
+}
+
+type OrderAddressEntity implements Node {
+  addressDetail: String
+  addressName: String!
+  contactName: String!
+  contactPhone: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  latitude: Float!
+  longitude: Float!
+  mapAddress: String!
+  updatedAt: DateTime!
+}
+
+type OrderConnection {
+  items: [OrderEntity!]
+  meta: BasePaginationMeta!
+}
+
+type OrderDiscountCodeEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  discountCodeId: String!
+  id: ID!
+  isAssignAllProduct: Boolean!
+  name: String!
+  unit: DiscountCodeUnitEnum!
+  updatedAt: DateTime!
+  value: Float!
+}
+
+type OrderEntity implements Node {
+  address: OrderAddressEntity
+  code: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  discount: Float!
+  id: ID!
+  note: String
+  partner: OrderPartner
+  partnerId: String
+  product: [OrderProductEntity!]!
+  shippingFee: Float!
+  status: OrderStatusEnum!
+  statusDetail: OrderStatusEntity
+  total: Float!
+  updatedAt: DateTime!
+  user: UserEntity!
+  userCanReview: Boolean
+  userId: String!
+}
+
+input OrderInput {
+  cartItemIds: [String!]!
+  discountCodeId: String
+  note: String
+  shippingFee: Float
+
+  """
+  Amount including shipping fee, before applying discount code
+  """
+  total: Float!
+
+  """
+  Amount to pay, discount code has been applied
+  """
+  totalPayment: Float!
+}
+
+type OrderPartner implements Node {
+  addressMoreInfo: String
+  avatar: Media
+  avatarId: String
+  bank: String!
+  birthday: DateTime
+  canReviewPartner: Boolean!
+  cardNumber: String!
+  citizenId: String
+  countProduct: Int
+  countTechnician: Int
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String
+  education: CategoryEntity
+  email: String
+  expenseInfo: Expense
+  fullname: String
+  hotline: String
+  id: ID!
+  isActive: Boolean!
+  isAdmin: Boolean!
+  isApproved: Boolean
+  latitude: Float
+  level: CategoryEntity
+  longitude: Float
+  mapAddress: String
+  menus: [PartnerMenuEnum!]
+  parentId: String
+  parentInfo: PartnerEntity
+  phone: String!
+  qualifications: [CategoryEntity!]
+  reviewSummary: ReviewSummary
+  star: Float!
+  starInfo: [StarInfo!]!
+  storeReviewSummary: ReviewSummary
+  storeStar: Float
+  storeStarInfo: [StarInfo!]
+  suggestionPoint: Float!
+  type: PartnerTypeEnum!
+  updatedAt: DateTime!
+}
+
+type OrderProductEntity implements Node {
+  avatar: Media
+  avatarId: String!
+  canReviewProduct: Boolean
+  createdAt: DateTime!
+  deletedAt: DateTime
+  descriptionImageIds: [String!]
+  id: ID!
+  isNew: Boolean!
+  name: String!
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  orderId: String!
+  ordinalNumber: Float
+  partNumber: String
+  productId: String!
+  quantity: Float!
+  serialNumber: String
+  total: Float!
+  type: ProductTypeEnum!
+  unitPrice: Float!
+  updatedAt: DateTime!
+  vehicleRegistrationPlate: String
+  vinNumber: String
+  yearOfManufacture: Float
+}
+
+type OrderStatusAndItemCount {
+  status: OrderStatusEnum!
+  totalItem: Float!
+}
+
+type OrderStatusCategoryEntity implements Node {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  orderStatusId: String!
+  type: CategoryTypeEnum!
+}
+
+type OrderStatusEntity implements Node {
+  createdAt: DateTime!
+  id: ID!
+  note: String
+  orderId: String!
+  partnerId: String
+  reasons: [OrderStatusCategoryEntity!]
+  status: OrderStatusEnum!
+  userId: String
+}
+
+enum OrderStatusEnum {
+  CANCEL
+  COMPLETE
+  DELIVERED
+  SHIPPING
+  WAIT_FOR_CONFIRM
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPrevPage: Boolean!
+  startCursor: String
+}
+
+"""
+PartnerAuthConnection
+"""
+type PartnerAuthConnection {
+  accessToken: String!
+  partner: PartnerEntity!
+  refreshToken: String!
+}
+
+input PartnerCheckEmailOrPasswordIsUsedInput {
+  email: String
+  partnerId: String
+  phone: String
+}
+
+type PartnerConnection {
+  items: [PartnerEntity!]
+  meta: BasePaginationMeta!
+}
+
+input PartnerCreateAccessaryInput {
+  avatarId: String!
+  descriptionImageIds: [String!]
+  detail: String
+  isActive: Boolean!
+  isFixedCost: Boolean!
+  isNew: Boolean!
+  modelId: String
+  name: String!
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  originId: String
+  partId: String!
+  partNumber: String
+  productDevices: [ProductDeviceInput!]
+  productUnitId: String!
+  quantity: Float!
+  serialNumber: String
+  type: ProductTypeEnum!
+  unitPrice: Float
+}
+
+input PartnerCreateDiscountCodeInput {
+  endDate: DateTime
+  isActive: Boolean
+  limit: Float
+  limitPerAccount: Float
+  minOrderValue: Float
+  name: String!
+  productIds: [String!]
+  startDate: DateTime!
+  unit: DiscountCodeUnitEnum = PERCENTAGE
+  value: Float!
+}
+
+input PartnerCreateProductVehicleInput {
+  avatarId: String!
+  descriptionImageIds: [String!]
+  detail: String
+  isActive: Boolean!
+  isFixedCost: Boolean!
+  isNew: Boolean!
+  manufacturerId: String!
+  modelId: String
+  name: String!
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  ordinalNumber: Float
+  originId: String
+  productUnitId: String!
+  quantity: Float!
+  serialNumber: String
+  type: ProductTypeEnum!
+  unitPrice: Float
+  vehicleRegistrationPlate: String
+  vehicleTypeId: String!
+  vinNumber: String!
+  yearOfManufacture: Float
+}
+
+type PartnerEntity implements Node {
+  addressMoreInfo: String
+  avatar: Media
+  avatarId: String
+  bank: String!
+  birthday: DateTime
+  cardNumber: String!
+  citizenId: String
+  countProduct: Int
+  countTechnician: Int
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String
+  education: CategoryEntity
+  email: String
+  expenseInfo: Expense
+  fullname: String
+  hotline: String
+  id: ID!
+  isActive: Boolean!
+  isAdmin: Boolean!
+  isApproved: Boolean
+  latitude: Float
+  level: CategoryEntity
+  longitude: Float
+  mapAddress: String
+  menus: [PartnerMenuEnum!]
+  parentId: String
+  parentInfo: PartnerEntity
+  phone: String!
+  qualifications: [CategoryEntity!]
+  reviewSummary: ReviewSummary
+  star: Float!
+  starInfo: [StarInfo!]!
+  storeReviewSummary: ReviewSummary
+  storeStar: Float
+  storeStarInfo: [StarInfo!]
+  suggestionPoint: Float!
+  type: PartnerTypeEnum!
+  updatedAt: DateTime!
+}
+
+input PartnerForgotPasswordInput {
+  emailOrPhone: String!
+}
+
+input PartnerLoginInput {
+  deviceId: String
+  email: String
+  password: String!
+  phone: String
+}
+
+enum PartnerMenuEnum {
+  COURSE
+  DISCOUNT
+  DOCUMENT
+  ORDER
+  PRODUCT
+  REPAIR
+  TECHNICIAN
+}
+
+type PartnerReportBooking {
+  dailySettlementReport: [ReportHistoryResDto!]
+  settlementDetails: [SettlementEntity!]
+  settlementTotal: Float!
+}
+
+type PartnerReportOrder {
+  dailyOrderReport: [ReportHistoryResDto!]
+  orderDetails: [OrderEntity!]
+  orderTotal: Float!
+}
+
+type PartnerReportSummary {
+  histories: [ReportHistoryResDto!]!
+  totalRevenue: Float!
+  totalRevenueOrder: Float!
+  totalRevenueSettlement: Float!
+}
+
+type PartnerSummary {
+  totalBooking: Float!
+  totalOrder: Float!
+  totalProduct: Float!
+  totalRevenue: Float!
+  totalReview: Float!
+  totalTechnician: Float!
+}
+
+enum PartnerTypeEnum {
+  AGENCY
+  FREELANCER_TECHNICIAN
+  TECHNICIAN
+}
+
+input PartnerUpdateAccessaryInput {
+  avatarId: String
+  descriptionImageIds: [String!]
+  detail: String
+  id: String!
+  isActive: Boolean
+  isFixedCost: Boolean
+  isNew: Boolean
+  modelId: String
+  name: String
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  originId: String
+  partId: String
+  partNumber: String
+  productDevices: [ProductDeviceInput!]
+  productUnitId: String
+  quantity: Float
+  serialNumber: String
+  type: ProductTypeEnum
+  unitPrice: Float
+}
+
+input PartnerUpdateDiscountCodeInput {
+  endDate: DateTime
+  id: String!
+  isActive: Boolean
+  limit: Float
+  limitPerAccount: Float
+  minOrderValue: Float
+  name: String
+  productIds: [String!]
+  startDate: DateTime
+  unit: DiscountCodeUnitEnum = PERCENTAGE
+  value: Float
+}
+
+input PartnerUpdateMenuConfigsInput {
+  menus: [PartnerMenuEnum!]!
+}
+
+input PartnerUpdateProductVehicleInput {
+  avatarId: String
+  descriptionImageIds: [String!]
+  detail: String
+  id: String!
+  isActive: Boolean
+  isFixedCost: Boolean
+  isNew: Boolean
+  manufacturerId: String
+  modelId: String
+  name: String
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  ordinalNumber: Float
+  originId: String
+  productUnitId: String
+  quantity: Float
+  serialNumber: String
+  type: ProductTypeEnum
+  unitPrice: Float
+  vehicleRegistrationPlate: String
+  vehicleTypeId: String
+  vinNumber: String
+  yearOfManufacture: Float
+}
+
+input PartnersForBookingSortBy {
+  createdAt: SortDirectionEnum
+  distance: SortDirectionEnum
+  star: SortDirectionEnum
+  suggestionPoint: SortDirectionEnum
+}
+
+type PeriodAndItemCount {
+  periodType: String!
+  totalItem: Float!
+}
+
+enum PeriodTypeEnum {
+  MONTHLY
+  RANGE
+  WEEKLY
+  YEARLY
+}
+
+type PlaceDetailOutput {
+  address: String!
+  lat: Float!
+  lng: Float!
+  name: String!
+  place_id: String!
+}
+
+type ProductConnection {
+  items: [ProductEntity!]
+  meta: BasePaginationMeta!
+}
+
+type ProductDevice {
+  manufacturer: CategoryEntity!
+  model: CategoryEntity!
+  vehicleType: CategoryEntity!
+}
+
+input ProductDeviceInput {
+  manufacturerId: String!
+  modelId: String!
+  vehicleTypeId: String!
+}
+
+type ProductEntity implements Node {
+  avatar: Media
+  avatarId: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  descriptionImageIds: [String!]
+  descriptionImages: [Media!]!
+  detail: String
+  id: ID!
+  isActive: Boolean!
+  isFavorite: Boolean
+  isFixedCost: Boolean!
+  isNew: Boolean!
+  manufacturer: CategoryEntity
+  model: CategoryEntity
+  name: String!
+  numberOrder: Float
+  numberSold: Float!
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  ordinalNumber: Float
+  origin: CategoryEntity
+  partNumber: String
+  partOfProduct: CategoryEntity
+  partner: PartnerEntity
+  partnerId: String
+  productDevices: [ProductDevice!]!
+  productType: CategoryEntity
+  productUnit: CategoryEntity
+  quantity: Float!
+  reviewSummary: ReviewSummary
+  serialNumber: String
+  star: Float!
+  starInfo: [StarInfo!]
+  type: ProductTypeEnum!
+  unitPrice: Float!
+  updatedAt: DateTime!
+  vehicleRegistrationPlate: String
+  vinNumber: String
+  yearOfManufacture: Float
+}
+
+type ProductExistInCart {
+  cartItem: CartItemEntity
+  exist: Boolean!
+}
+
+type ProductQuotationConnection {
+  items: [ProductQuotationEntity!]
+  meta: BasePaginationMeta!
+}
+
+type ProductQuotationEntity implements Node {
+  code: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  detail: String!
+  id: ID!
+  medias: [Media!]!
+  partner: PartnerEntity!
+  partnerId: String!
+  product: ProductEntity!
+  productId: String!
+  quantity: Float!
+  response: String
+  status: ProductQuotationStatusEnum!
+  updatedAt: DateTime!
+  user: UserEntity!
+  userId: String!
+}
+
+input ProductQuotationInput {
+  detail: String!
+  productId: String!
+  quantity: Float!
+}
+
+type ProductQuotationStatusAndItemCount {
+  status: ProductQuotationStatusEnum!
+  totalItem: Float!
+}
+
+enum ProductQuotationStatusEnum {
+  RESPONDED
+  SENT
+}
+
+enum ProductTypeEnum {
+  ACCESSARY
+  VEHICLE
+}
+
+type ProvinceOutput {
+  code: String!
+  codename: String!
+  divisionType: String!
+  name: String!
+}
+
+type Query {
+  address(id: String!): AddressEntity
+  addresses: [AddressEntity!]
+  adminAgencies(
+    agencyId: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): PartnerConnection
+  adminBooking(id: String!): BookingEntity!
+  adminBookingSettlements(bookingId: String!): [SettlementEntity!]!
+  adminBookings(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    statuses: [BookingStatusEnum!]
+  ): BookingConnection!
+  adminCountProductQuotationForEachStatus: [ProductQuotationStatusAndItemCount!]!
+  adminDetailPartner(id: String!): PartnerEntity
+  adminExportAgencies(isActive: StatusEnum, isApproved: Boolean, search: String, sort: SortInput): String!
+  adminExportBookingInvoices(search: String): String!
+  adminExportCourse(
+    endDate: String
+    isActive: StatusEnum
+    openDate: DateTime
+    search: String
+    sort: SortInput
+    startDate: String
+  ): String!
+  adminExportDiscountCode(isActive: StatusEnum, search: String, sort: SortInput): String!
+  adminExportDocuments(isActive: StatusEnum, referenceId: String, search: String, sort: SortInput): String!
+  adminExportGuides(isActive: StatusEnum, search: String, sort: SortInput): String!
+  adminExportInstructions(guideId: String, isActive: StatusEnum, search: String, sort: SortInput): String!
+  adminExportProducts(
+    isActive: StatusEnum
+    manufacturerId: String
+    modelId: String
+    originId: String
+    search: String
+    sort: SortInput
+    type: ProductTypeEnum
+    vehicleTypeId: String
+  ): String!
+  adminExportQuotationPrice(isActive: StatusEnum, search: String, sort: SortInput): String!
+  adminExportQuotations(
+    isActive: StatusEnum
+    search: String
+    sort: SortInput
+    statuses: [QuotationStatusEnum!]
+  ): String!
+  adminExportReferences(isActive: StatusEnum, search: String, sort: SortInput): String!
+  adminExportSettlements(
+    isActive: StatusEnum
+    search: String
+    sort: SortInput
+    statuses: [SettlementStatusEnum!]
+  ): String!
+  adminExportTechnicians(
+    agencyId: String
+    isActive: StatusEnum
+    isApproved: Boolean
+    search: String
+    sort: SortInput
+  ): String!
+  adminExportUsers(input: ExportUserInput!): String!
+  adminGetBookingInvoice(bookingId: String!): BookingEntity!
+  adminGetBookingInvoices(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): BookingConnection!
+  adminGetCourse(id: String!): CourseEntity!
+  adminGetCourses(
+    endDate: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    openDate: DateTime
+    page: Int = 1
+    search: String
+    sort: SortInput
+    startDate: String
+  ): CourseConnection!
+  adminGetDiscountCode(id: String!): DiscountCodeEntity!
+  adminGetDiscountCodes(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    name: String
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): DiscountCodeConnection!
+  adminGetDocument(id: String!): DocumentEntity!
+  adminGetDocuments(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    referenceId: String
+    search: String
+    sort: SortInput
+  ): DocumentConnection!
+  adminGetGuide(id: String!): GuideEntity!
+  adminGetGuides(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): GuideConnection!
+  adminGetHomePageInfo: AdminHomePage!
+  adminGetInstruction(id: String!): InstructionEntity!
+  adminGetInstructions(
+    filters: [JSONObject!]
+    guideId: String
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): InstructionConnection!
+  adminGetInvoice(settlementId: String!): Media!
+  adminGetNotification(id: String!): NotificationEntity!
+  adminGetNotifications(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): NotificationConnection!
+  adminGetPartnersSubmitSurvey(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    surveyId: String!
+  ): PartnerConnection!
+  adminGetReference(id: String!): ReferenceEntity!
+  adminGetReferences(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): ReferenceConnection!
+  adminGetReportDetailOrder(
+    endDate: String
+    partnerId: String!
+    periodType: PeriodTypeEnum!
+    startDate: String
+  ): ReportResDto!
+  adminGetReportSettlementOrder(
+    endDate: String
+    partnerId: String!
+    periodType: PeriodTypeEnum!
+    startDate: String
+  ): ReportResDto!
+  adminGetReportSummary(
+    endDate: String
+    partnerId: String!
+    periodType: PeriodTypeEnum!
+    startDate: String
+  ): ReportSummary!
+  adminGetReview(id: String!): ReviewEntity!
+  adminGetReviews(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    star: Float
+    type: ReviewTypeEnum!
+  ): ReviewConnection!
+  adminGetServiceFeedback(id: String!): ServiceFeedbackEntity!
+  adminGetServiceFeedbacks(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    status: ServiceFeedbacksStatusEnum
+    type: ServiceFeedbackTypeEnum
+  ): ServiceFeedbackConnection!
+  adminGetStore(partnerId: String!, storeId: String!): StoreEntity!
+  adminGetStoreHistory(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    partnerId: String!
+    search: String
+    sort: SortInput
+    storeId: String!
+    type: StoreProductTypeEnum!
+  ): StoreProductHistoryConnection!
+  adminGetStoreProduct(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    partnerId: String!
+    search: String
+    sort: SortInput
+    storeId: String!
+  ): StoreProductConnection!
+  adminGetStores(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    partnerId: String!
+    search: String
+    sort: SortInput
+  ): StoreConnection!
+  adminGetSubmitResult(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    surveyId: String!
+    type: SurveyHistoryType!
+    userId: String!
+  ): SurveyHistoryEntity!
+  adminGetSurvey(id: String!): SurveyEntity!
+  adminGetSurveys(
+    endDate: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    openDate: DateTime
+    page: Int = 1
+    search: String
+    sort: SortInput
+    startDate: String
+  ): SurveyConnection!
+  adminGetUserBookings(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    userId: String!
+  ): BookingConnection!
+  adminGetUserMaintenances(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    userId: String!
+  ): MaintenanceConnection!
+  adminGetUserOrders(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    userId: String!
+  ): OrderConnection!
+  adminGetUserVehicles(
+    excludeActiveBooking: Boolean
+    excludeActiveMaintenance: Boolean
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    userId: String!
+    vehicleTypeId: String
+  ): VehicleConnection!
+  adminGetUsersSubmitSurvey(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    surveyId: String!
+  ): UserConnection!
+  adminMaintenance(id: String!): MaintenanceEntity!
+  adminMaintenances(
+    endDate: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    startDate: String
+    statuses: [MaintenanceStatusEnum!]
+  ): MaintenanceConnection!
+  adminOrder(id: String!): OrderEntity!
+  adminOrders(
+    endDate: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    startDate: String
+    statuses: [OrderStatusEnum!]
+  ): OrderConnection!
+  adminPartner: PartnerEntity
+  adminProduct(id: String!): ProductEntity!
+  adminProductQuotation(id: String!): ProductQuotationEntity!
+  adminProductQuotations(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isAdmin: Boolean
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    partnerId: String
+    productId: String
+    productQuotationCode: String
+    productQuotationId: String
+    search: String
+    sort: SortInput
+    status: ProductQuotationStatusEnum
+    userId: String
+  ): ProductQuotationConnection!
+  adminProducts(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    manufacturerId: String
+    modelId: String
+    originId: String
+    page: Int = 1
+    search: String
+    sort: SortInput
+    type: ProductTypeEnum
+    vehicleTypeId: String
+  ): ProductConnection!
+  adminQuotation(id: String!): QuotationEntity!
+  adminQuotationHistories(bookingId: String!): [QuotationEntity!]!
+  adminQuotations(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    statuses: [QuotationStatusEnum!]
+  ): QuotationConnection!
+  adminSettlement(id: String!): SettlementEntity!
+  adminSettlements(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    statuses: [SettlementStatusEnum!]
+  ): SettlementConnection!
+  adminTechnician(id: String!): PartnerEntity
+  adminTechnicians(
+    agencyId: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): PartnerConnection
+
+  """
+  Require `LIST_ROLE` permission
+  """
+  adminUser(id: String!): UserEntity
+  adminUsers(input: AdminUserPaginationInput!): UserConnection!
+  agencyGetDetailTechnician(id: String!): PartnerEntity!
+  agencyGetTechnicians(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): PartnerConnection!
+  agencyTechnicians(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): PartnerConnection
+  booking(id: String!): BookingEntity!
+  bookingHistoriesOfTechnician(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    technicianId: String!
+  ): BookingConnection!
+  bookingStatusHistory(bookingId: String!): [BookingStatusEntity!]!
+
+  """
+  Get a list of category, support pagination, can access by client role
+  """
+  categories(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    type: CategoryTypeEnum!
+  ): CategoryConnection!
+
+  """
+  Get a single instance of category, can access by client role
+  """
+  category(id: String!): CategoryEntity!
+  checkAgencyExisted(email: String, phone: String): Boolean!
+  checkProductOrdinalNumberExist(id: String, ordinalNumber: Float!): Boolean!
+  checkProductPartNumberExist(id: String, partNumber: String!): Boolean!
+  checkProductSerialExist(id: String, serialNumber: String!): Boolean!
+  checkProductVehicleRegistrationPlateExist(id: String, vehicleRegistrationPlate: String!): Boolean!
+  checkProductVinExist(id: String, vinNumber: String!): Boolean!
+  checkSerialExist(id: String, serialNumber: String!): Boolean!
+  checkTechnicianExisted(citizenId: String, email: String, phone: String): Boolean!
+  checkVehicleRegistrationPlateExist(id: String, vehicleRegistrationPlate: String!): Boolean!
+  checkVinExist(id: String, serialNumber: String!): Boolean!
+  countActiveBooking: Float!
+  countActiveMaintenance(endDate: DateTime, startDate: DateTime): Float!
+  countMaintenanceItemForEachStatus: [MaintenanceStatusAndItemCount!]!
+  countOrderItemForEachStatus: [OrderStatusAndItemCount!]!
+  currentRoutineLevel(vehicleId: String!): Float!
+
+  """
+  List all districts by province code name
+  """
+  districts(provinceCodeName: String!): [DistrictOutput!]
+  feedback(id: String!): FeedbackEntity
+  getApproximateAddressUnits(input: ApproximateAddressUnitsArgs!): ApproximateAddressUnits!
+  getConnectedSocialAccounts: [SocialAccount!]!
+  getCountStatusServiceFeedback: [ServiceFeedbackStatusAndItemCount!]!
+  getMediaById(id: String!): Media!
+  getPlaceDetail(place_id: String!): PlaceDetailOutput!
+  getServiceFeedback(id: String!): ServiceFeedbackEntity!
+  getServiceFeedbacks(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    status: ServiceFeedbacksStatusEnum
+    type: ServiceFeedbackTypeEnum
+  ): ServiceFeedbackConnection!
+  invoice(id: String!): BookingEntity!
+  listTodo: [TodoEntity!]!
+  maintenance(id: String!): MaintenanceEntity!
+  maintenanceAccessories(routineLevel: Float!): [MaintenanceAccessory!]!
+  meAdmin: AdminEntity!
+  mePartner(deviceId: String): PartnerEntity!
+  meUser(deviceId: String): UserEntity!
+  myBookings(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    statuses: [BookingStatusEnum!]
+  ): BookingConnection!
+  myCart: CartEntity!
+  myFeedback(status: String!): [FeedbackEntity!]
+  myOrders(
+    endDate: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    startDate: String
+    statuses: [OrderStatusEnum!]
+  ): OrderConnection!
+  mySetting: UserSettingEntity
+  order(id: String!): OrderEntity!
+  partnerBooking(id: String!): BookingEntity!
+  partnerBookingQuotations(bookingId: String!): [QuotationEntity!]!
+  partnerBookingSettlement(bookingId: String!): [SettlementEntity!]!
+  partnerBookingStatusHistory(bookingId: String!): [BookingStatusEntity!]!
+  partnerBookings(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    statuses: [BookingStatusEnum!]
+  ): BookingConnection!
+  partnerCheckEmailOrPasswordIsUsed(input: PartnerCheckEmailOrPasswordIsUsedInput!): Boolean!
+  partnerCountDiscountCode: [DiscountStatusAndEachStatusCount!]!
+  partnerCountItemByEachPeriod: [PeriodAndItemCount!]!
+  partnerCountItemForEachStatus: [StatusAndItemCount!]!
+  partnerCountOrderItemForEachStatus: [OrderStatusAndItemCount!]!
+  partnerCountProductQuotationForEachStatus: [ProductQuotationStatusAndItemCount!]!
+  partnerGetCountStatusServiceFeedback: [ServiceFeedbackStatusAndItemCount!]!
+  partnerGetCourse(id: String!): CourseEntity!
+  partnerGetCourses(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    isOwner: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): CourseConnection!
+  partnerGetDiscountCode(id: String!): DiscountCodeEntity!
+  partnerGetDiscountCodes(
+    endDate: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isActivities: Boolean!
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    startDate: String
+  ): DiscountCodeConnection!
+  partnerGetDocument(id: String!): DocumentEntity!
+  partnerGetInvoice(settlementId: String!): Media!
+  partnerGetLatestQuotationOfBooking(bookingId: String!): QuotationEntity
+  partnerGetLatestSettlementOfBooking(bookingId: String!): SettlementEntity!
+  partnerGetReference(id: String!): ReferenceEntity!
+  partnerGetReferences(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): ReferenceConnection!
+  partnerGetReportDetailBooking(
+    endDate: String
+    partnerId: String!
+    periodType: PeriodTypeEnum!
+    startDate: String
+  ): PartnerReportBooking!
+  partnerGetReportDetailOrder(
+    endDate: String
+    partnerId: String!
+    periodType: PeriodTypeEnum!
+    startDate: String
+  ): PartnerReportOrder!
+  partnerGetReportSummary(
+    endDate: String
+    partnerId: String!
+    periodType: PeriodTypeEnum!
+    startDate: String
+  ): PartnerReportSummary!
+  partnerGetServiceFeedback(id: String!): ServiceFeedbackEntity!
+  partnerGetServiceFeedbacks(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    status: ServiceFeedbacksStatusEnum
+    type: ServiceFeedbackTypeEnum
+  ): ServiceFeedbackConnection!
+  partnerGetStartInfo(reviewObject: String!): [StarInfo!]!
+  partnerGetStore(id: String!): StoreEntity!
+  partnerGetStoreHistory(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    storeId: String!
+    type: StoreProductTypeEnum!
+  ): StoreProductHistoryConnection!
+  partnerGetStoreProduct(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    storeId: String!
+  ): StoreProductConnection!
+  partnerGetStores(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): StoreConnection!
+  partnerGetSummaryReview(reviewObject: String!): ReviewSummary!
+  partnerGetSurvey(id: String!): SurveyEntity!
+  partnerGetSurveys(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): SurveyConnection!
+  partnerListReview(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    reviewObject: ReviewObjectEnum!
+    search: String
+    sort: SortInput
+    star: Float
+  ): ReviewConnection!
+  partnerNotificationTypeUnSeenCount: [NotificationTypeUnSeenCount!]!
+  partnerNotifications(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    isSeen: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    type: NotificationTypeEnum!
+  ): NotificationConnection!
+  partnerOrder(id: String!): OrderEntity!
+  partnerOrders(
+    endDate: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    startDate: String
+    statuses: [OrderStatusEnum!]
+  ): OrderConnection!
+  partnerProduct(id: String!): ProductEntity!
+  partnerProductQuotation(id: String!): ProductQuotationEntity!
+  partnerProductQuotations(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isAdmin: Boolean
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    partnerId: String
+    productId: String
+    productQuotationCode: String
+    productQuotationId: String
+    search: String
+    sort: SortInput
+    status: ProductQuotationStatusEnum
+    userId: String
+  ): ProductQuotationConnection!
+  partnerProducts(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    isFixedCost: Boolean
+    isNew: Boolean
+    limit: Int = 10
+    page: Int = 1
+    partnerId: String!
+    search: String
+    sort: SortInput
+    type: ProductTypeEnum
+  ): ProductConnection!
+  partnerQuotation(quotationId: String!): QuotationEntity!
+  partnerSettlement(settlementId: String!): SettlementEntity!
+  partnerSummary: PartnerSummary!
+  partnersForBooking(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isAgency: Boolean
+    isApproved: Boolean
+    isTechnician: Boolean
+    latitude: Float!
+    limit: Int = 10
+    longitude: Float!
+    page: Int = 1
+    search: String
+    sort: SortInput
+    sortBy: PartnersForBookingSortBy
+  ): PartnerConnection
+  productExistInCart(productId: String!): ProductExistInCart!
+
+  """
+  List all provinces
+  """
+  provinces: [ProvinceOutput!]
+  quotationPriceList(id: String!): QuotationPriceListEntity!
+  quotationPriceLists(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    productName: String
+    search: String
+    sort: SortInput
+  ): QuotationPriceListConnection!
+  reverseGeocoding(input: LatLng!): [ReverseGeocoding!]!
+  reviewsOfPartner(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    partnerId: String!
+    search: String
+    sort: SortInput
+    star: Float
+    type: ReviewTypeEnum!
+  ): ReviewConnection!
+  reviewsOfProduct(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    productId: String!
+    search: String
+    sort: SortInput
+    star: Float
+    type: ReviewTypeEnum!
+  ): ReviewConnection!
+  searchPlacesAutocomplete(input: SearchPlacesArgs!): [SearchPlace!]!
+  searchStore(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    isNew: Boolean
+    limit: Int = 10
+    page: Int = 1
+    partnerId: String
+    search: String!
+    sort: SortInput
+    type: ProductTypeEnum
+  ): PartnerConnection!
+  settlementsOfTechnician(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    technicianId: String!
+  ): SettlementConnection!
+  storeDetail(id: String!): PartnerEntity!
+  technician(id: String!): PartnerEntity
+  technicianGetBookings(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    technicianId: String!
+  ): BookingConnection!
+  technicianGetSettlements(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    technicianId: String!
+  ): SettlementConnection!
+  testPartnerNotification: Boolean!
+  testUserNotification: Boolean!
+  userBookingQuotations(bookingId: String!): [QuotationEntity!]!
+  userBookingSettlements(bookingId: String!): [SettlementEntity!]!
+  userCheckEmailOrPhoneIsUsed(input: UserCheckEmailOrPhoneIsUsed!): Boolean!
+  userCountFavoriteProducts: Float!
+  userCountItemForEachStatus: [StatusAndItemCount!]!
+  userCountProductQuotationForEachStatus: [ProductQuotationStatusAndItemCount!]!
+  userFavoriteProducts(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): ProductConnection!
+  userGetAgencyTechnicians(
+    filterTechniciansByAgencyId: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): PartnerConnection!
+  userGetDiscountCodes(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    isAvailable: Boolean
+    limit: Int = 10
+    page: Int = 1
+    productIds: [String!]!
+    search: String
+    sort: SortInput
+  ): DiscountCodeConnection!
+  userGetGuide(id: String!): GuideEntity!
+  userGetGuides(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): GuideConnection!
+  userGetInvoice(settlementId: String!): Media!
+  userGetLatestQuotationOfBooking(bookingId: String!): QuotationEntity
+  userGetLatestSettlementOfBooking(bookingId: String!): SettlementEntity!
+  userGetReference(id: String!): ReferenceEntity!
+  userGetReferences(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): ReferenceConnection!
+  userGetSurvey(id: String!): SurveyEntity!
+  userGetSurveys(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+  ): SurveyConnection!
+  userMaintenances(
+    endDate: String
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    startDate: String
+    statuses: [MaintenanceStatusEnum!]
+  ): MaintenanceConnection!
+  userNotificationTypeUnSeenCount: [NotificationTypeUnSeenCount!]!
+  userNotifications(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    isSeen: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    type: NotificationTypeEnum!
+  ): NotificationConnection!
+  userPartnerDetail(id: String!): PartnerEntity!
+  userProduct(id: String!): ProductEntity!
+  userProductQuotation(id: String!): ProductQuotationEntity!
+  userProductQuotations(
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isAdmin: Boolean
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    partnerId: String
+    productId: String
+    productQuotationCode: String
+    productQuotationId: String
+    search: String
+    sort: SortInput
+    status: ProductQuotationStatusEnum
+    userId: String
+  ): ProductQuotationConnection!
+  userProducts(
+    excludeProductIds: [String!]
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isAdmin: Boolean
+    isApproved: Boolean
+    isNew: Boolean
+    limit: Int = 10
+    manufacturerIds: [String!]
+    modelIds: [String!]
+    originIds: [String!]
+    page: Int = 1
+    partnerId: String
+    search: String
+    sort: SortInput
+    type: ProductTypeEnum
+    vehicleTypeIds: [String!]
+  ): ProductConnection!
+  userQuotation(quotationId: String!): QuotationEntity!
+  userSearchSuggestions(search: String): [String!]!
+  userSettlement(settlementId: String!): SettlementEntity!
+  userSummary(input: UserSummaryInput!): UserSummary!
+  vehicle(id: String!): VehicleEntity!
+  vehicles(
+    excludeActiveBooking: Boolean
+    excludeActiveMaintenance: Boolean
+    filters: [JSONObject!]
+    isActive: StatusEnum
+    isApproved: Boolean
+    limit: Int = 10
+    page: Int = 1
+    search: String
+    sort: SortInput
+    vehicleTypeId: String
+  ): VehicleConnection!
+
+  """
+  List all wards by province code and district code
+  """
+  wards(districtCodeName: String!, provinceCodeName: String!): [WardOutput!]
+}
+
+type QuestionEntity implements Node {
+  answerType: AnswerType!
+  answers: [String!]
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  isRequired: Boolean!
+  question: String!
+  surveyId: String!
+  updatedAt: DateTime!
+}
+
+input QuickAddVehicleInput {
+  addressMoreInfo: String!
+  hidden: Boolean
+  latitude: Float!
+  longitude: Float!
+  mapAddress: String!
+  name: String!
+}
+
+type QuotationAccessoryEntity implements Node {
+  available: Boolean!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  name: String!
+  quantity: Float!
+  quotationId: String!
+  unit: String!
+  unitPrice: Float!
+  updatedAt: DateTime!
+}
+
+input QuotationAccessoryInput {
+  available: Boolean!
+  name: String!
+  quantity: Float!
+  unit: String!
+  unitPrice: Float!
+}
+
+type QuotationAdditionalFeeEntity implements Node {
+  amount: Float!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  name: String!
+  quotationId: String!
+  updatedAt: DateTime!
+}
+
+input QuotationAdditionalFeeInput {
+  amount: Float!
+  name: String!
+}
+
+type QuotationConnection {
+  items: [QuotationEntity!]
+  meta: BasePaginationMeta!
+}
+
+type QuotationDiagnosticEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String
+  diagnosticCode: String!
+  expense: Float!
+  id: ID!
+  quotationId: String!
+  quotationPriceListId: String!
+  updatedAt: DateTime!
+  workingHour: Float!
+}
+
+input QuotationDiagnosticInput {
+  description: String
+  expense: Float
+  quotationPriceListId: String!
+  workingHour: Float
+}
+
+type QuotationEntity implements Node {
+  accessories: [QuotationAccessoryEntity!]!
+  additionalFees: [QuotationAdditionalFeeEntity!]!
+  booking: BookingEntity!
+  bookingId: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  diagnosisFee: Float!
+  diagnosisNote: String
+  diagnostics: [QuotationDiagnosticEntity!]!
+  estimatedCompleteAt: DateTime
+  id: ID!
+  operatingNumber: Float!
+  operatingUnit: OperatingUnitEnum!
+  reasons: [CategoryEntity!]
+  rejectReasons: String
+  repairFee: Float!
+  status: QuotationStatusEnum!
+  technician: PartnerEntity!
+  technicianId: String!
+  total: Float!
+  transportFee: Float!
+  updatedAt: DateTime!
+  user: UserEntity!
+  userId: String!
+}
+
+type QuotationPriceListConnection {
+  items: [QuotationPriceListEntity!]
+  meta: BasePaginationMeta!
+}
+
+type QuotationPriceListEntity implements Node {
+  accessoriesName: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  diagnosticCode: String!
+  expense: Float!
+  fixable: Boolean!
+  id: ID!
+  isActive: Boolean!
+  updatedAt: DateTime!
+  vehicleType: String!
+  workingCode: String!
+  workingHour: Float!
+}
+
+enum QuotationStatusEnum {
+  ACCEPTED
+  PENDING
+  REJECTED
+}
+
+input ReCreateBookingInput {
+  bookingId: String!
+  partnerId: String!
+  transportDistance: Float!
+  transportDuration: Float!
+  transportFee: Float!
+}
+
+input ReCreateOrderInput {
+  orderId: String!
+}
+
+type ReferenceConnection {
+  items: [ReferenceEntity!]
+  meta: BasePaginationMeta!
+}
+
+type ReferenceEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String
+  documents: [DocumentEntity!]
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input RegisterInput {
+  deviceId: String
+  email: String
+  phone: String!
+}
+
+input RejectQuotationInput {
+  note: String
+  quotationId: String!
+  reasons: [String!]
+}
+
+input RejectSettlementInput {
+  reason: String!
+  settlementId: String!
+}
+
+type ReportHistoryResDto {
+  date: String!
+  revenue: Float!
+}
+
+type ReportResDto {
+  histories: [ReportHistoryResDto!]!
+  totalRevenue: Float!
+}
+
+type ReportSummary {
+  totalRevenue: Float!
+  totalRevenueOrder: Float!
+  totalRevenueSettlement: Float!
+}
+
+input ResendOtpInput {
+  actor: ActorTypeEnum!
+  phone: String!
+  type: ActiveCodeEnum!
+}
+
+input RespondProductQuotationInput {
+  id: String!
+  mediaIds: [String!]
+  response: String!
+}
+
+type ReverseGeocoding {
+  address: String!
+  lat: Float!
+  lng: Float!
+  name: String!
+  place_id: String!
+}
+
+type ReviewConnection {
+  items: [ReviewEntity!]
+  meta: BasePaginationMeta!
+}
+
+type ReviewEntity implements Node {
+  assessorId: String!
+  bookingId: String
+  comment: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  orderId: String
+  partnerAssessor: PartnerEntity
+  personEvaluatedId: String
+  productId: String
+  star: Float!
+  type: ReviewTypeEnum!
+  updatedAt: DateTime!
+  userAssessor: UserEntity
+}
+
+enum ReviewObjectEnum {
+  BOOKING
+  ORDER
+}
+
+type ReviewSummary {
+  percent: Float!
+  starAverage: Float!
+  total: Float!
+}
+
+enum ReviewTypeEnum {
+  CLIENT_AGENCY
+  CLIENT_PRODUCT
+  CLIENT_STORE
+  CLIENT_TECHNICIAN
+  TECHNICIAN_CLIENT
+}
+
+input ScheduleBookingInput {
+  bookingId: String!
+  scheduleReason: String
+  scheduleTime: DateTime!
+}
+
+type SearchPlace {
+  address: String!
+  name: String!
+  place_id: String!
+}
+
+input SearchPlacesArgs {
+  keyword: String!
+  location: LatLng
+}
+
+type SearchSuggestionEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  keyword: String!
+  updatedAt: DateTime!
+  weight: Float!
+}
+
+type ServiceFeedbackConnection {
+  items: [ServiceFeedbackEntity!]
+  meta: BasePaginationMeta!
+}
+
+type ServiceFeedbackEntity implements Node {
+  answer: String
+  content: String!
+  createAt: DateTime!
+  deletedAt: DateTime!
+  id: ID!
+  images: [Media!]!
+  imagesAnswer: [Media!]!
+  imagesAnswerIds: [String!]
+  imagesIds: [String!]
+  partner: PartnerEntity
+  partnerId: String
+  status: ServiceFeedbacksStatusEnum!
+  type: ServiceFeedbackTypeEnum!
+  updateAt: DateTime!
+  user: UserEntity
+  userId: String
+}
+
+type ServiceFeedbackStatusAndItemCount {
+  quantity: String!
+  status: String!
+}
+
+enum ServiceFeedbackTypeEnum {
+  COMPLAIN
+  QUESTION
+  SUPPORT
+}
+
+enum ServiceFeedbacksStatusEnum {
+  DONE
+  IN_PROGRESS
+  WAITING
+}
+
+type SettlementAdditionalFeeEntity implements Node {
+  amount: Float!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  name: String!
+  settlementId: String!
+  updatedAt: DateTime!
+}
+
+input SettlementAdditionalFeeInput {
+  amount: Float!
+  name: String!
+}
+
+type SettlementConnection {
+  items: [SettlementEntity!]
+  meta: BasePaginationMeta!
+}
+
+type SettlementEntity implements Node {
+  additionalFees: [SettlementAdditionalFeeEntity!]!
+  booking: BookingEntity!
+  bookingId: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  discount: Float
+  id: ID!
+  invoiceId: String
+  quotation: QuotationEntity!
+  quotationId: String!
+  status: SettlementStatusEnum!
+  technician: PartnerEntity!
+  technicianId: String!
+  total: Float!
+  updatedAt: DateTime!
+  user: UserEntity!
+  userId: String!
+  vatTax: Float
+}
+
+enum SettlementStatusEnum {
+  ACCEPTED
+  PENDING
+  REJECTED
+}
+
+type SocialAccount implements Node {
+  id: ID!
+  socialEmail: String
+  socialId: String!
+  type: SocialAccountTypeEnum!
+  userId: String!
+}
+
+enum SocialAccountTypeEnum {
+  APPLE
+  FACEBOOK
+  GOOGLE
+}
+
+enum SortDirectionEnum {
+  ASC
+  DESC
+}
+
+input SortInput {
+  direction: SortDirectionEnum
+  field: String!
+}
+
+type StarInfo {
+  star: Float!
+  total: Float!
+}
+
+type StatusAndItemCount {
+  status: BookingStatusEnum!
+  totalitems: Float!
+}
+
+enum StatusEnum {
+  ACTIVE
+  INACTIVE
+}
+
+type StoreConnection {
+  items: [StoreEntity!]
+  meta: BasePaginationMeta!
+}
+
+type StoreEntity implements Node {
+  address: String!
+  avatar: Media
+  avatarId: String
+  createdAt: DateTime!
+  deletedAt: DateTime
+  description: String
+  email: String!
+  id: ID!
+  name: String!
+  partnerId: String!
+  phoneNumber: String!
+  updatedAt: DateTime!
+}
+
+type StoreProductConnection {
+  items: [StoreProductEntity!]
+  meta: BasePaginationMeta!
+}
+
+type StoreProductEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  product: ProductEntity!
+  productId: String!
+  quantity: Float!
+  storeId: String!
+  updatedAt: DateTime!
+}
+
+type StoreProductHistoryConnection {
+  items: [StoreProductHistoryEntity!]
+  meta: BasePaginationMeta!
+}
+
+type StoreProductHistoryEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  inputDate: DateTime!
+  product: ProductEntity!
+  productId: String!
+  quantity: Float!
+  storeId: String!
+  type: StoreProductTypeEnum!
+  updatedAt: DateTime!
+}
+
+enum StoreProductTypeEnum {
+  EXPORT
+  IMPORT
+}
+
+type Subscription {
+  onBookingTimeout: BookingEntity!
+  onCreateBooking: BookingEntity!
+  onPartnerCancelBooking: BookingEntity!
+}
+
+type SurveyConnection {
+  items: [SurveyEntity!]
+  meta: BasePaginationMeta!
+}
+
+type SurveyEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  partnerIsSubmitSurvey: Boolean!
+  partnerResultSurvey: SurveyHistoryEntity
+  questions: [QuestionEntity!]!
+  updatedAt: DateTime!
+  userIsSubmitSurvey: Boolean!
+  userResultSurvey: SurveyHistoryEntity
+}
+
+type SurveyHistoryEntity implements Node {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: ID!
+  results: [SurveyResult!]!
+  surveyId: String!
+  type: SurveyHistoryType!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+enum SurveyHistoryType {
+  PARTNER
+  USER
+}
+
+type SurveyResult {
+  answer: [String!]!
+  questionId: String!
+}
+
+input SurveyResultInput {
+  answer: [String!]!
+  questionId: String!
+}
+
+type TodoEntity implements Node {
+  createdAt: DateTime!
+  id: ID!
+  isActive: Boolean!
+  title: String!
+  updatedAt: DateTime!
+}
+
+input UpdateAccessaryInput {
+  avatarId: String
+  descriptionImageIds: [String!]
+  detail: String
+  id: String!
+  isActive: Boolean
+  isFixedCost: Boolean
+  isNew: Boolean
+  modelId: String
+  name: String
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  originId: String
+  partId: String
+  partNumber: String
+  productDevices: [ProductDeviceInput!]
+  productUnitId: String
+  quantity: Float
+  serialNumber: String
+  type: ProductTypeEnum
+  unitPrice: Float
+}
+
+input UpdateAddressInput {
+  addressDetail: String
+  addressName: String!
+  contactName: String!
+  contactPhone: String!
+  id: ID!
+  isDefault: Boolean! = false
+  latitude: Float!
+  longitude: Float!
+  mapAddress: String!
+}
+
+input UpdateAdminInput {
+  address: String
+  addressMoreInfo: String
+  avatarId: String
+  birthday: String
+  fullname: String
+  id: String!
+}
+
+input UpdateAgentInput {
+  addressMoreInfo: String
+  avatarId: String
+  description: String
+  email: String
+  fullname: String
+  hotline: String
+  id: ID!
+  latitude: Float
+  longitude: Float
+  mapAddress: String
+  phone: String
+  qualifications: [String!]
+  suggestionPoint: Float
+}
+
+input UpdateAgentStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateBookingStatusInput {
+  bookingId: String!
+}
+
+input UpdateCategoryInput {
+  id: String!
+  isActive: Boolean!
+  name: String!
+}
+
+input UpdateCourseInput {
+  address: String
+  bannerId: String
+  content: String
+  endDate: DateTime
+  id: String!
+  isActive: Boolean
+  name: String
+  openDate: DateTime
+  price: Float
+  startDate: DateTime
+  teacher: String
+  teacherDescription: String
+  videoUrl: String
+}
+
+input UpdateCourseStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateDiscountCodeInput {
+  endDate: DateTime
+  id: String!
+  isActive: Boolean
+  limit: Float
+  limitPerAccount: Float
+  minOrderValue: Float
+  name: String
+  productIds: [String!]
+  startDate: DateTime
+  unit: DiscountCodeUnitEnum = PERCENTAGE
+  value: Float
+}
+
+input UpdateDiscountStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateDocumentInput {
+  fileIds: [String!]
+  id: String!
+  isActive: Boolean
+  name: String
+  referenceId: String
+}
+
+input UpdateDocumentStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateGuideInput {
+  description: String
+  id: String!
+  isActive: Boolean
+  name: String
+}
+
+input UpdateGuideStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateInstructionInput {
+  description: String
+  guideId: String
+  id: String!
+  isActive: Boolean
+  name: String
+}
+
+input UpdateInstructionStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateMaintenanceInput {
+  accessories: [MaintenanceAccessoryInput!]
+  addressMoreInfo: String!
+  endDate: DateTime!
+  id: String!
+  isActive: Boolean!
+  latitude: Float!
+  longitude: Float!
+  maintenanceLevel: MaintenanceLevelEnum!
+  mapAddress: String!
+  note: String
+  routineLevel: Float
+  startDate: DateTime!
+  vehicleId: String!
+}
+
+input UpdateNotificationStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateOrderInput {
+  orderId: String!
+  status: OrderStatusEnum!
+}
+
+input UpdatePartnerBasicInfoInput {
+  addressMoreInfo: String
+  avatarId: String
+  bank: String
+  birthday: String
+  cardNumber: String
+  description: String
+  education: String
+  email: String
+  fullname: String
+  hotline: String
+  latitude: Float
+  longitude: Float
+  mapAddress: String
+  qualifications: [String!]
+}
+
+input UpdatePartnerPasswordInput {
+  isAdmin: Boolean
+  newPassword: String!
+  oldPassword: String!
+}
+
+input UpdateProductStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateProductVehicleInput {
+  avatarId: String
+  descriptionImageIds: [String!]
+  detail: String
+  id: String!
+  isActive: Boolean
+  isFixedCost: Boolean
+  isNew: Boolean
+  manufacturerId: String
+  modelId: String
+  name: String
+  operatingNumber: Float
+  operatingUnit: OperatingUnitEnum
+  ordinalNumber: Float
+  originId: String
+  productUnitId: String
+  quantity: Float
+  serialNumber: String
+  type: ProductTypeEnum
+  unitPrice: Float
+  vehicleRegistrationPlate: String
+  vehicleTypeId: String
+  vinNumber: String
+  yearOfManufacture: Float
+}
+
+input UpdateQuotationPriceListInput {
+  accessoriesName: String
+  diagnosticCode: String
+  expense: Float
+  fixable: Boolean
+  id: String!
+  isActive: Boolean
+  vehicleType: String
+  workingCode: String
+  workingHour: Float
+}
+
+input UpdateReferenceInput {
+  description: String
+  id: String!
+  isActive: Boolean
+  name: String
+}
+
+input UpdateReferenceStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateServiceFeedbackInput {
+  content: String!
+  id: String!
+  imagesIds: [String!]
+}
+
+input UpdateStoreInput {
+  address: String
+  avatarId: String
+  description: String
+  email: String
+  id: String!
+  name: String
+  phoneNumber: String
+}
+
+input UpdateSurveyInput {
+  id: String!
+  isActive: Boolean
+  name: String
+  questions: [CreateQuestionInput!]
+}
+
+input UpdateSurveyStatusInput {
+  id: ID!
+  isActive: Boolean!
+}
+
+input UpdateTechnicianApproveInput {
+  id: ID!
+  isApproved: Boolean!
+}
+
+input UpdateTechnicianInput {
+  addressMoreInfo: String
+  avatarId: String
+  bank: String
+  birthday: String
+  cardNumber: String
+  citizenId: String
+  education: String
+  email: String
+  fullname: String
+  id: String!
+  latitude: Float
+  level: String
+  longitude: Float
+  mapAddress: String
+  parentId: String
+  qualifications: [String!]
+  suggestionPoint: Float
+}
+
+input UpdateTodoInput {
+  id: String!
+  isActive: Boolean!
+  title: String!
+}
+
+input UpdateUserInput {
+  avatarId: String
+  email: String
+  fullname: String
+  phone: String
+}
+
+input UpdateUserSettingInput {
+  allowAccessCamera: Boolean!
+  allowAccessPhoto: Boolean!
+  allowLocation: Boolean!
+  allowNotification: Boolean!
+}
+
+input UpdateVehicleInput {
+  addressMoreInfo: String
+  avatarId: String
+  detail: String
+  id: ID!
+  latitude: Float!
+  longitude: Float!
+  manufacturerId: String!
+  mapAddress: String!
+  modelId: String!
+  name: String!
+  operatingNumber: Float!
+  operatingUnit: OperatingUnitEnum! = HOURS
+  ordinalNumber: Float
+  originId: String!
+  serialNumber: String
+  vehicleRegistrationPlate: String
+  vehicleTypeId: String!
+  vinNumber: String!
+  yearOfManufacture: Float!
+}
+
+input UserAddMultiFavoriteProductInput {
+  productIds: [String!]!
+}
+
+input UserChangePasswordInput {
+  currentPassword: String!
+  newPassword: String!
+}
+
+input UserCheckEmailOrPhoneIsUsed {
+  email: String
+  phone: String
+  userId: String
+}
+
+type UserConnection {
+  items: [UserEntity!]
+  meta: BasePaginationMeta!
+}
+
+type UserEntity implements Node {
+  address: String
+  avatar: Media
+  avatarId: String
+  birthday: DateTime
+  certificate: String
+  createdAt: DateTime!
+  deletedAt: DateTime
+  email: String
+  fullname: String
+  id: ID!
+  isActive: Boolean!
+  numberBooking: Float!
+  numberMaintenance: Float!
+  numberOrder: Float!
+  phone: String!
+  star: Float!
+  totalBookings: Float!
+  totalMaintenanceRequests: Float!
+  totalOrders: Float!
+  totalPayment: Float!
+  totalSpending: Float!
+  updatedAt: DateTime!
+  userAddress: AddressEntity
+}
+
+input UserForgotPasswordInput {
+  emailOrPhone: String!
+}
+
+input UserLoginInput {
+  deviceId: String
+  email: String
+  password: String!
+  phone: String
+}
+
+input UserRemoveMultiFavoriteProductInput {
+  productIds: [String!]
+}
+
+type UserSettingEntity implements Node {
+  allowAccessCamera: Boolean!
+  allowAccessPhoto: Boolean!
+  allowLocation: Boolean!
+  allowNotification: Boolean!
+  id: ID!
+}
+
+type UserSummary {
+  activeBooking: Float!
+  activeMaintenance: Float!
+}
+
+input UserSummaryInput {
+  endDate: DateTime
+  startDate: DateTime
+}
+
+type VehicleConnection {
+  items: [VehicleEntity!]
+  meta: BasePaginationMeta!
+}
+
+type VehicleEntity implements Node {
+  addressMoreInfo: String
+  avatar: Media
+  avatarId: String
+  createdAt: DateTime!
+  deletedAt: DateTime
+  detail: String
+  hidden: Boolean!
+  id: ID!
+  latitude: Float!
+  longitude: Float!
+  manufacturer: CategoryEntity
+  mapAddress: String
+  model: CategoryEntity
+  name: String!
+  operatingNumber: Float!
+  operatingUnit: OperatingUnitEnum!
+  ordinalNumber: Float
+  origin: CategoryEntity
+  serialNumber: String
+  updatedAt: DateTime!
+  userId: String!
+  vehicleRegistrationPlate: String
+  vehicleType: CategoryEntity
+  vinNumber: String!
+  yearOfManufacture: Float
+}
+
+input VerifyOtpInput {
+  deviceId: String
+  otpCode: String!
+  phone: String!
+  type: ActiveCodeEnum!
+}
+
+type WardOutput {
+  code: String!
+  codename: String!
+  divisionType: String!
+  name: String!
+  shortCodename: String!
+}

@@ -1,0 +1,7 @@
+query searchPlacesAutocomplete($input: SearchPlacesArgs!) {
+  searchPlacesAutocomplete(input: $input) {
+    address
+    name
+    place_id
+  }
+}

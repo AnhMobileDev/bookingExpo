@@ -1,0 +1,38 @@
+.custom-radio {
+  .ant-radio-inner {
+    width: 20px;
+    height: 20px;
+    &::after {
+      width: 24px;
+      height: 24px;
+      margin-block-start: -12px;
+      margin-inline-start: -12px;
+    }
+  }
+  & > span:not([class]) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.slc-none-icon .ant-select-arrow {
+  display: none;
+}
+.border-accessory {
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+.max-height-panel .ant-collapse-content-box {
+  max-height: 60vh;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    visibility: hidden;
+    width: 6px;
+  }
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: rgba(103, 110, 114, 1);
+    }
+  }
+}

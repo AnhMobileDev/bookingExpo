@@ -1,0 +1,3 @@
+mutation deleteCartItems($input: DeleteCartItemsInput!) {
+  deleteCartItems(input: $input)
+}

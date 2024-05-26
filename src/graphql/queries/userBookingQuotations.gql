@@ -1,0 +1,6 @@
+query userBookingQuotations($bookingId: String!) {
+  userBookingQuotations(bookingId: $bookingId) {
+   id
+   createdAt
+  }
+}

@@ -1,0 +1,3 @@
+query currentRoutineLevel($vehicleId: String!) {
+  currentRoutineLevel(vehicleId: $vehicleId)
+}

@@ -1,0 +1,3 @@
+query userCheckEmailOrPhoneIsUsed($input: UserCheckEmailOrPhoneIsUsed!) {
+  userCheckEmailOrPhoneIsUsed(input: $input)
+}

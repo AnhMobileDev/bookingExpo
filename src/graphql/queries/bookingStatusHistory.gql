@@ -1,0 +1,11 @@
+query bookingStatusHistory($bookingId: String!) {
+  bookingStatusHistory(bookingId: $bookingId) {
+    bookingId
+    createdAt
+    id
+    note
+    partnerId
+    status
+    userId
+  }
+}

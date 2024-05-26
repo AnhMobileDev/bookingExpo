@@ -1,0 +1,5 @@
+export enum STATUS_FEEDBACK {
+  WAITING = 'WAITING',
+  PENDING = 'PENDING',
+  DONE = 'DONE',
+}

@@ -1,0 +1,3 @@
+mutation removeAddress($id: ID) {
+  removeAddress(id: $id)
+}

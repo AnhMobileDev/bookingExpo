@@ -1,0 +1,28 @@
+@import './variables.less';
+@import './antd.less';
+
+#nprogress .bar {
+  background: @primary !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px @primary, 0 0 5px @primary;
+}
+
+#nprogress .spinner-icon {
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #bab9b9;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3b3a3a;
+}
